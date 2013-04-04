@@ -1,0 +1,2 @@
+# grid
+bind esc:ctrl grid padding:5 2560x1440:16,9
