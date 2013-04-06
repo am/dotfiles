@@ -118,7 +118,7 @@ var oneMonitorLayout = S.lay("oneMonitor", {
 });
 
 // Defaults
-S.def([monWorkL, monWorkL], twoMonitorLayout);
+S.def([monWorkL, monWorkR], twoMonitorLayout);
 S.def([monHome], oneMonitorLayout);
 
 // Layout Operations
