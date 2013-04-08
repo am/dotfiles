@@ -1,6 +1,6 @@
 // this does nothing...
 // @TODO do something
-
+/*
 // Configs
 S.cfga({
   "defaultToCurrentScreen" : true,
@@ -46,3 +46,4 @@ S.bnda({
   // Grid
   "esc:ctrl" : S.op("grid")
 });
+*/

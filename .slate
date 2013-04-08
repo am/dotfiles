@@ -1,16 +1,22 @@
-# here it is a big @TODO
+# config
+config defaultToCurrentScreen true
 
-# center window around axis
+# center windows around axis
 bind pad8:ctrl,alt move screenOriginX+((screenSizeX-windowSizeX)/2);screenOriginY windowSizeX;windowSizeY
 bind pad2:ctrl,alt move screenOriginX+((screenSizeX-windowSizeX)/2);screenSizeY-windowSizeY windowSizeX;windowSizeY
 bind pad6:ctrl,alt move screenSizeX-windowSizeX;screenOriginY+((screenSizeY-windowSizeY)/2) windowSizeX;windowSizeY
 bind pad4:ctrl,alt move screenOriginX;screenOriginY+((screenSizeY-windowSizeY)/2) windowSizeX;windowSizeY
 bind pad5:ctrl,alt move screenOriginX+((screenSizeX-windowSizeX)/2);screenOriginY+((screenSizeY-windowSizeY)/2) windowSizeX;windowSizeY
 
+# push windows
 bind pad8:ctrl,shift push up
 bind pad2:ctrl,shift push down
 bind pad6:ctrl,shift push right
 bind pad4:ctrl,shift push left
 
+# full and half size windows
+bind return:ctrl,alt move screenOriginX;screenOriginY screenSizeX;screenSizeY
+bind return:shift,ctrl,alt move screenOriginX;screenOriginY screenSizeX;screenSizeY/2
+
 # Grid
-bind esc:ctrl grid padding:2 2560x1440:12,6 1680x1050:8,4 1050x1680:8,4
+bind esc:ctrl grid padding:2 2560x1440:12,6 1920x1080:8,4 1680x1050:8,4
