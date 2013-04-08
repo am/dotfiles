@@ -1,12 +1,22 @@
 # config
 config defaultToCurrentScreen true
 
+# alias
+alias center_window move screenOriginX+((screenSizeX-windowSizeX)/2);screenOriginY+((screenSizeY-windowSizeY)/2) windowSizeX;windowSizeY
+alias axis_center_window_right move screenOriginX+(screenSizeX-windowSizeX);screenOriginY+((screenSizeY-windowSizeY)/2) windowSizeX;windowSizeY
+alias axis_center_window_left move screenOriginX;screenOriginY+((screenSizeY-windowSizeY)/2) windowSizeX;windowSizeY
+alias axis_center_window_top move screenOriginX+((screenSizeX-windowSizeX)/2);screenOriginY windowSizeX;windowSizeY
+alias axis_center_window_bottom move screenOriginX+((screenSizeX-windowSizeX)/2);screenOriginY+(screenSizeY-windowSizeY) windowSizeX;windowSizeY
+alias resize_fullscreen move screenOriginX;screenOriginY screenSizeX;screenSizeY
+alias resize_fullscreen_padding move screenOriginX+(screenSizeX/10);screenOriginY+(screenSizeY/10) screenSizeX-(screenSizeX/5);screenSizeY-(screenSizeY/5)
+alias resize_halfscreen_top move screenOriginX;screenOriginY screenSizeX;screenSizeY/2
+
 # center windows around axis
-bind pad8:ctrl,alt move screenOriginX+((screenSizeX-windowSizeX)/2);screenOriginY windowSizeX;windowSizeY
-bind pad2:ctrl,alt move screenOriginX+((screenSizeX-windowSizeX)/2);screenSizeY-windowSizeY windowSizeX;windowSizeY
-bind pad6:ctrl,alt move screenSizeX-windowSizeX;screenOriginY+((screenSizeY-windowSizeY)/2) windowSizeX;windowSizeY
-bind pad4:ctrl,alt move screenOriginX;screenOriginY+((screenSizeY-windowSizeY)/2) windowSizeX;windowSizeY
-bind pad5:ctrl,alt move screenOriginX+((screenSizeX-windowSizeX)/2);screenOriginY+((screenSizeY-windowSizeY)/2) windowSizeX;windowSizeY
+bind pad8:ctrl,alt ${axis_center_window_top}
+bind pad2:ctrl,alt ${axis_center_window_bottom}
+bind pad6:ctrl,alt ${axis_center_window_right}
+bind pad4:ctrl,alt ${axis_center_window_left}
+bind pad5:ctrl,alt ${center_window}
 
 # push windows
 bind pad8:ctrl,shift push up
@@ -15,8 +25,9 @@ bind pad6:ctrl,shift push right
 bind pad4:ctrl,shift push left
 
 # full and half size windows
-bind return:ctrl,alt move screenOriginX;screenOriginY screenSizeX;screenSizeY
-bind return:shift,ctrl,alt move screenOriginX;screenOriginY screenSizeX;screenSizeY/2
+bind return:ctrl,alt ${resize_fullscreen}
+bind return:ctrl,alt,cmd ${resize_fullscreen_padding}
+bind return:shift,ctrl ${resize_halfscreen_top}
 
 # Grid
 bind esc:ctrl grid padding:2 2560x1440:12,6 1920x1080:8,4 1680x1050:8,4
