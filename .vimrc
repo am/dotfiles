@@ -1,97 +1,87 @@
-" https://github.com/mathiasbynens/dotfiles/blob/master/.vimrc
-" Make Vim more useful
-set nocompatible
-" Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
-" Enhance command-line completion
-set wildmenu
-" Allow cursor keys in insert mode
-set esckeys
-" Allow backspace in insert mode
-set backspace=indent,eol,start
-" Optimize for fast terminal connections
-set ttyfast
-" Add the g flag to search/replace by default
-set gdefault
-" Use UTF-8 without BOM
-set encoding=utf-8 nobomb
-" Change mapleader
-let mapleader=","
-" Don’t add empty newlines at the end of files
-set binary
-set noeol
-" Centralize backups, swapfiles and undo history
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-if exists("&undodir")
-  set undodir=~/.vim/undo
-endif
+" https://github.com/JHaals/.dotfiles/blob/master/.vimrc
 
-" Respect modeline in files
-set modeline
-set modelines=4
-" Enable per-directory .vimrc files and disable unsafe commands in them
-set exrc
-set secure
-" Enable line numbers
-set number
-" Enable syntax highlighting
 syntax on
-" Highlight current line
-set cursorline
-" Make tabs as wide as two spaces
-set tabstop=2
-" Show “invisible” characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-set list
-" Highlight searches
-set hlsearch
-" Ignore case of searches
-set ignorecase
-" Highlight dynamically as pattern is typed
-set incsearch
-" Always show status line
-set laststatus=2
-" Enable mouse in all modes
-set mouse=a
-" Disable error bells
-set noerrorbells
-" Don’t reset cursor to start of line when moving around.
-set nostartofline
-" Show the cursor position
-set ruler
-" Don’t show the intro message when starting Vim
-set shortmess=atI
-" Show the current mode
-set showmode
-" Show the filename in the window titlebar
+filetype plugin indent on
+set backspace=2 " make backspace work like most other apps
+
+set encoding=utf-8
+"colorscheme railscasts
+set background=dark
+colorscheme Tomorrow-Night
+set autoindent      " Indent same level as the previous line
+"set t_Co=256        " 256 colors
+set smartindent
+map <F3> :set list!
 set title
-" Show the (partial) command as it’s being typed
-set showcmd
-" Use relative line numbers
-if exists("&relativenumber")
-  set relativenumber
-  au BufReadPost * set relativenumber
-endif
-" Start scrolling three lines before the horizontal window border
-set scrolloff=3
 
-" Strip trailing whitespace (,ss)
-function! StripWhitespace()
-  let save_cursor = getpos(".")
-  let old_query = getreg('/')
-  :%s/\s\+$//e
-  call setpos('.', save_cursor)
-  call setreg('/', old_query)
-endfunction
-noremap <leader>ss :call StripWhitespace()<CR>
-" Save a file as root (,W)
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
+" disable arrow keys
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
 
-" Automatic commands
-if has("autocmd")
-  " Enable file type detection
-  filetype on
-  " Treat .json files as .js
-  autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-endif
+" TABS
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+set listchars=tab:»\ ,trail:·
+set list
+cmap w!! %!sudo tee > /dev/null %
+
+" SEARCH highlight
+set incsearch
+set hlsearch
+
+"syntac check
+let mapleader = ","
+
+let g:syntastic_enable_signs=1
+let g:syntastic_enable_balloons = 1
+let g:syntastic_auto_loc_list=2
+let g:syntastic_mode_map = { 'mode': 'active',
+    \ 'active_filetypes': ['puppet', 'ruby', 'php', 'bash'],
+    \ 'passive_filetypes': [] }
+
+autocmd BufReadPost * :SyntasticCheck
+
+map <Leader>e :SyntasticCheck<CR>
+
+map <Leader>n :set nonumber<CR>
+map <Leader>y "+y<CR>
+
+" Enable the mouse
+"set mouse=a
+
+" Show matching brackets/paranthesis
+set showmatch
+
+" Python-mode
+let g:pymode_folding = 0
+let g:pymode_lint = 0
+let g:pymode_syntax_print_as_function = 1
+
+" Trim whitespace off line-endings on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" Highlight current line only for active window
+autocmd BufWinEnter * setlocal cursorline
+autocmd WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+
+" On OSX
+vmap <D-c> y:call system("pbcopy", getreg("\""))<CR>
+nmap <D-v> :call setreg("\"",system("pbpaste"))<CR>p
+execute pathogen#infect()
