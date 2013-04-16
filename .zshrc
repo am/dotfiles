@@ -8,8 +8,8 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="ys"
 
 # Example aliases
-alias zshconfig="mate ~/.zshrc"
-alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="st ~/.zshrc"
+alias ohmyzsh="st ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -38,3 +38,6 @@ source $ZSH/oh-my-zsh.sh
 
 # am Boxen
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+
+# autojump
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
