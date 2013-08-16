@@ -2,3 +2,4 @@
 
 
 # util
+alias rs='. ~/.zshrc'
