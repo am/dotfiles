@@ -30,4 +30,4 @@ bind return:ctrl,alt,cmd ${resize_fullscreen_padding}
 bind return:shift,ctrl ${resize_halfscreen_top}
 
 # Grid
-bind esc:ctrl grid padding:2 2560x1440:10,6 1920x1080:8,4 1680x1050:8,4
+bind esc:ctrl grid padding:2 2560x1440:10,6 1920x1080:10,6 1680x1050:8,4
