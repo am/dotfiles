@@ -11,12 +11,16 @@ alias resize_fullscreen move screenOriginX;screenOriginY screenSizeX;screenSizeY
 alias resize_fullscreen_padding move screenOriginX+(screenSizeX/10);screenOriginY+(screenSizeY/10) screenSizeX-(screenSizeX/5);screenSizeY-(screenSizeY/5)
 alias resize_halfscreen_top move screenOriginX;screenOriginY screenSizeX;screenSizeY/2
 
+alias resize_halfscreen_v_2 move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias resize_halfscreen_v_3 move screenOriginX;screenOriginY screenSizeX/3;screenSizeY
+alias resize_halfscreen_v_4 move screenOriginX;screenOriginY screenSizeX/4;screenSizeY
+
 # center windows around axis
-bind pad8:ctrl,alt ${axis_center_window_top}
-bind pad2:ctrl,alt ${axis_center_window_bottom}
-bind pad6:ctrl,alt ${axis_center_window_right}
-bind pad4:ctrl,alt ${axis_center_window_left}
-bind pad5:ctrl,alt ${center_window}
+bind t:a,ctrl,alt ${axis_center_window_top}
+bind b:a,ctrl,alt ${axis_center_window_bottom}
+bind r:a,ctrl,alt ${axis_center_window_right}
+bind l:a,ctrl,alt ${axis_center_window_left}
+bind c:a,ctrl,alt ${center_window}
 
 # push windows
 bind pad8:ctrl,shift push up
@@ -28,6 +32,10 @@ bind pad4:ctrl,shift push left
 bind return:ctrl,alt ${resize_fullscreen}
 bind return:ctrl,alt,cmd ${resize_fullscreen_padding}
 bind return:shift,ctrl ${resize_halfscreen_top}
+
+bind 2:r,ctrl,alt ${resize_halfscreen_v_2}
+bind 3:r,ctrl,alt ${resize_halfscreen_v_3}
+bind 4:r,ctrl,alt ${resize_halfscreen_v_4}
 
 # Grid
 bind esc:ctrl grid padding:2 2560x1440:10,6 1920x1080:8,4 1680x1050:8,4
