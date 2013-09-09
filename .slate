@@ -38,4 +38,4 @@ bind 3:r,ctrl,alt ${resize_halfscreen_v_3}
 bind 4:r,ctrl,alt ${resize_halfscreen_v_4}
 
 # Grid
-bind esc:ctrl grid padding:2 2560x1440:10,6 1920x1080:8,4 1680x1050:8,4
+bind esc:ctrl grid padding:2 2560x1440:10,6 1920x1080:10,6 1680x1050:8,4
