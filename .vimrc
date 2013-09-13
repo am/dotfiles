@@ -1,11 +1,29 @@
-" https://github.com/JHaals/.dotfiles/blob/master/.vimrc
-
 syntax on
+filetype off
 filetype plugin indent on
-set backspace=2 " make backspace work like most other apps
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
 
+Bundle 'sjl/gundo.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'klen/python-mode'
+Bundle 'scrooloose/syntastic'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'godlygeek/tabular'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'rodjek/vim-puppet'
+Bundle 'tpope/vim-surround'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'motemen/git-vim'
+Bundle 'SirVer/ultisnips'
+Bundle 'bling/vim-airline'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'tomtom/tcomment_vim'
+
+set laststatus=2
+set backspace=2 " make backspace work like most other apps
 set encoding=utf-8
-"colorscheme railscasts
 set background=dark
 colorscheme Tomorrow-Night
 set autoindent      " Indent same level as the previous line
@@ -29,7 +47,8 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-
+autocmd FileType ruby setlocal ts=2 sts=2 sw=2
+autocmd FileType coffee setlocal ts=2 sts=2 sw=2
 set listchars=tab:»\ ,trail:·
 set list
 cmap w!! %!sudo tee > /dev/null %
@@ -54,7 +73,7 @@ map <Leader>e :SyntasticCheck<CR>
 
 map <Leader>n :set nonumber<CR>
 map <Leader>y "+y<CR>
-
+map <Leader>c <c-_><c-_>
 " Enable the mouse
 "set mouse=a
 
@@ -71,17 +90,11 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
 
-" Highlight current line only for active window
-autocmd BufWinEnter * setlocal cursorline
-autocmd WinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
+"rainbow parantheses
+au VimEnter * RainbowParenthesesToggle
 
 " On OSX
 vmap <D-c> y:call system("pbcopy", getreg("\""))<CR>
 nmap <D-v> :call setreg("\"",system("pbpaste"))<CR>p
-execute pathogen#infect()
+
