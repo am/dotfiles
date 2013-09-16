@@ -11,7 +11,8 @@ Bundle 'klen/python-mode'
 Bundle 'scrooloose/syntastic'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'godlygeek/tabular'
-Bundle 'altercation/vim-colors-solarized'
+" Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'rodjek/vim-puppet'
 Bundle 'tpope/vim-surround'
 Bundle 'airblade/vim-gitgutter'
@@ -25,22 +26,12 @@ set laststatus=2
 set backspace=2 " make backspace work like most other apps
 set encoding=utf-8
 set background=dark
-colorscheme Tomorrow-Night
+" colorscheme Tomorrow-Night
 set autoindent      " Indent same level as the previous line
-"set t_Co=256        " 256 colors
+" set t_Co=256        " 256 colors
 set smartindent
 map <F3> :set list!
 set title
-
-" disable arrow keys
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
 
 " TABS
 set tabstop=4
@@ -57,7 +48,7 @@ cmap w!! %!sudo tee > /dev/null %
 set incsearch
 set hlsearch
 
-"syntac check
+" syntac check
 let mapleader = ","
 
 let g:syntastic_enable_signs=1
