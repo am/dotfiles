@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="sunrise"
+ZSH_THEME="sunrise-am"
 
 # Example aliases
 alias zshconfig="st ~/.zshrc"
@@ -32,7 +32,7 @@ export UPDATE_ZSH_DAYS=7
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx sublime rhc)
+plugins=(git gitfast osx sublime rhc)
 
 source $ZSH/oh-my-zsh.sh
 
