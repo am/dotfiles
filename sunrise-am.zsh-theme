@@ -14,11 +14,7 @@ RESET=$reset_color
 
 eval S='$FG[008]'
 
-if [ "$(whoami)" = "root" ]; then
-    PROMPTCOLOR="%{$R%}" PREFIX="-!-";
-else
-    PROMPTCOLOR="" PREFIX="---";
-fi
+PROMPTCOLOR="" PREFIX="—";
 
 TIME="%{$S%}%*%{$RESET%}"
 
@@ -75,7 +71,7 @@ custom_git_prompt_status() {
 function custom_git_prompt() {
   ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
   ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
-  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$(custom_git_prompt_status)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
 # %B sets bold text
@@ -85,11 +81,10 @@ RPS1="${return_code}"
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$Y%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$Y%}›%{$RESET%} "
 
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$R%}*"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$R%} ×"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-ZSH_THEME_GIT_PROMPT_AHEAD="%{$B%}➔"
-
+ZSH_THEME_GIT_PROMPT_AHEAD="%{$B%}∆"
 
 ZSH_THEME_GIT_STATUS_PREFIX=" "
 
