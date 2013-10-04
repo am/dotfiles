@@ -42,14 +42,12 @@ source $ZSH/oh-my-zsh.sh
 # autojump
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
-
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # araxis merge tools
-# export PATH=$PATH:/Applications/Araxis\ Merge.app/Contents/Utilities
+# export PATH='/Applications/Araxis\ Merge.app/Contents/Utilities':$PATH
 
 # http://superuser.com/questions/561067/zsh-prompts-to-correct-executable-when-running-bundle-exec
 alias bundle='nocorrect bundle'
-
