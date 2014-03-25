@@ -1,0 +1,127 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
+// for a full listing of what's available.
+@import 'ui-variables';
+
+// https://github.com/atom/atom-dark-syntax/blob/master/stylesheets/syntax-variables.less
+@import 'syntax-variables';
+
+// https://github.com/styleguide/css/7.0
+@import 'octicon-utf-codes';
+
+.lint {
+  .violation {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-top-width: 0;
+
+    &.violation-info {
+      border-bottom-color: @text-color-info;
+    }
+
+    &.violation-warning {
+      border-bottom-color: @text-color-warning;
+    }
+
+    // .error is already defined in /Applications/Atom.app/Contents/Resources/app/static/utilities.less
+    // and it adds unexpected CSS animation.
+    &.violation-error {
+      border-bottom-color: @text-color-error;
+    }
+  }
+
+  .tooltip {
+    font-family: @font-family;
+    max-width: 430px;
+  }
+
+  .tooltip.bottom {
+    margin-top: 1px;
+
+    .tooltip-arrow {
+      left: 0 !important;
+      margin-left: 0 !important;
+      border-left-width: 0 !important;
+    }
+  }
+
+  .tooltip .tooltip-inner {
+    white-space: pre-wrap;
+    text-align: left;
+    box-shadow: 0 0 3px fadeout(@syntax-background-color, 10%);
+
+    .attachment {
+      margin-top: 5px;
+    }
+
+    .code-label {
+      margin: 0;
+    }
+
+    pre {
+      margin: 5px 0;
+      padding: 4px 8px;
+      white-space: pre;
+      word-wrap: normal;
+      overflow: scroll;
+      font-size: 10px;
+      background-color: transparent;
+      border: 1px solid transparent;
+    }
+  }
+
+  .tooltip.bottom .tooltip-inner {
+    border-top-left-radius: 0 !important;
+  }
+}
+
+.editor .gutter .line-number {
+  &.lint-warning .icon-right {
+    visibility: visible;
+
+    &:before {
+      content: @alert;
+      color: @text-color-warning;
+    }
+  }
+
+  &.lint-error .icon-right {
+    visibility: visible;
+
+    &:before {
+      content: @alert;
+      color: @text-color-error;
+    }
+  }
+}
+
+.status-bar .lint-status {
+  .icon {
+    margin-left: 5px;
+  }
+
+  .icon:before {
+    @font-size: 12px;
+    width: @font-size;
+    height: @font-size;
+    font-size: @font-size;
+    top: 0;
+    margin-right: 2px;
+  }
+
+  .lint-clean:before {
+    color: @text-color-success;
+  }
+
+  .lint-warning:before {
+    color: @text-color-warning;
+  }
+
+  .lint-error:before {
+    color: @text-color-error;
+  }
+}

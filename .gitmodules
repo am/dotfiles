@@ -1,0 +1,3 @@
+[submodule ".atom/packages/spacegray-eighties-ui"]
+	path = .atom/packages/spacegray-eighties-ui
+	url = git@github.com:am/spacegray-eighties-ui.git
