@@ -16,26 +16,36 @@ alias resize_halfscreen_v_3 move screenOriginX;screenOriginY screenSizeX/3;scree
 alias resize_halfscreen_v_4 move screenOriginX;screenOriginY screenSizeX/4;screenSizeY
 
 # center windows around axis
-bind t:a,ctrl,alt ${axis_center_window_top}
-bind b:a,ctrl,alt ${axis_center_window_bottom}
-bind r:a,ctrl,alt ${axis_center_window_right}
-bind l:a,ctrl,alt ${axis_center_window_left}
-bind c:a,ctrl,alt ${center_window}
+bind t:a,ctrl,shift ${axis_center_window_top}
+bind b:a,ctrl,shift ${axis_center_window_bottom}
+bind r:a,ctrl,shift ${axis_center_window_right}
+bind l:a,ctrl,shift ${axis_center_window_left}
+bind c:a,ctrl,shift ${center_window}
 
 # push windows
-bind pad8:ctrl,shift push up
-bind pad2:ctrl,shift push down
-bind pad6:ctrl,shift push right
-bind pad4:ctrl,shift push left
+bind up:shift,ctrl push up
+bind down:shift,ctrl push down
+bind right:shift,ctrl push right
+bind left:shift,ctrl push left
 
 # full and half size windows
-bind return:ctrl,alt ${resize_fullscreen}
-bind return:ctrl,alt,cmd ${resize_fullscreen_padding}
+bind return:ctrl,shift ${resize_fullscreen}
+bind return:ctrl,shift,cmd ${resize_fullscreen_padding}
 bind return:shift,ctrl ${resize_halfscreen_top}
 
-bind 2:r,ctrl,alt ${resize_halfscreen_v_2}
-bind 3:r,ctrl,alt ${resize_halfscreen_v_3}
-bind 4:r,ctrl,alt ${resize_halfscreen_v_4}
+bind 2:r,ctrl,shift ${resize_halfscreen_v_2}
+bind 3:r,ctrl,shift ${resize_halfscreen_v_3}
+bind 4:r,ctrl,shift ${resize_halfscreen_v_4}
 
 # Grid
-bind esc:ctrl grid padding:2 2560x1440:10,6 1920x1080:10,6 1680x1050:8,4
+bind esc:ctrl grid padding:2 2560x1440:10,6 1920x1080:10,6 1680x1050:8,4 1440x900:8,5
+
+# layouts
+layout landLayout 'Airmail' push left bar-resize:(screenSizeX/10)*7
+layout landLayout 'Google Chrome' push left bar-resize:(screenSizeX/10)*7
+
+default landLayout resolutions:1920x1080
+default airLayout resolutions:1440x900
+
+bind l:l,shift,ctrl layout landLayout
+bind a:l,shift,ctrl layout airLayout
