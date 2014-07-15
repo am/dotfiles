@@ -43,9 +43,11 @@ bind esc:ctrl grid padding:2 2560x1440:10,6 1920x1080:10,6 1680x1050:8,4 1440x90
 # layouts
 layout landLayout 'Airmail' push left bar-resize:(screenSizeX/10)*7
 layout landLayout 'Google Chrome' push left bar-resize:(screenSizeX/10)*7
+layout landLayout 'HipChat' push left bar-resize:(screenSizeX/10)*5
+layout landLayout 'Sublime Text' push left bar-resize:screenSizeX
 
 default landLayout resolutions:1920x1080
-default airLayout resolutions:1440x900
+# default airLayout resolutions:1440x900
 
 bind l:l,shift,ctrl layout landLayout
-bind a:l,shift,ctrl layout airLayout
+# bind a:l,shift,ctrl layout airLayout
