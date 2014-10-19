@@ -1,26 +1,32 @@
-syntax on
-filetype off
-filetype plugin indent on
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-Bundle 'sjl/gundo.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'klen/python-mode'
-Bundle 'scrooloose/syntastic'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'godlygeek/tabular'
-" Bundle 'altercation/vim-colors-solarized'
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'rodjek/vim-puppet'
-Bundle 'tpope/vim-surround'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'motemen/git-vim'
-Bundle 'SirVer/ultisnips'
-Bundle 'bling/vim-airline'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'tomtom/tcomment_vim'
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+Plugin 'sjl/gundo.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'klen/python-mode'
+Plugin 'scrooloose/syntastic'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'godlygeek/tabular'
+" Plugin 'altercation/vim-colors-solarized'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'rodjek/vim-puppet'
+Plugin 'tpope/vim-surround'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'motemen/git-vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'bling/vim-airline'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'tomtom/tcomment_vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 set laststatus=2
 set backspace=2 " make backspace work like most other apps
