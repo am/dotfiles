@@ -18,7 +18,7 @@ alias ohmyzsh="st ~/.oh-my-zsh"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
-export UPDATE_ZSH_DAYS=7
+export UPDATE_ZSH_DAYS=1
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
@@ -32,7 +32,7 @@ export UPDATE_ZSH_DAYS=7
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git gitfast osx sublime rhc tmux)
+plugins=(osx gitfast sublime rhc tmux rails bundler git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -46,8 +46,19 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# araxis merge tools
-# export PATH='/Applications/Araxis\ Merge.app/Contents/Utilities':$PATH
-
 # http://superuser.com/questions/561067/zsh-prompts-to-correct-executable-when-running-bundle-exec
 alias bundle='nocorrect bundle'
+
+export EDITOR=opt/boxen/homebrew/bin/emacs
+export HOMEBREW_HOME="$HOMEBREW_ROOT"
+
+# node shims
+export PATH='/opt/boxen/nodenv/shims/':$PATH
+
+# flex
+export FLEX_HOME='/Volumes/Data/System/SDK/flex_sdk_4.11/'
+
+# Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+alias gll='sh ~/src/dotfiles/bin/gll.sh'
