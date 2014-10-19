@@ -23,10 +23,10 @@ bind l:a,ctrl,shift ${axis_center_window_left}
 bind c:a,ctrl,shift ${center_window}
 
 # push windows
-bind up:shift,ctrl push up
-bind down:shift,ctrl push down
-bind right:shift,ctrl push right
-bind left:shift,ctrl push left
+# bind up:shift,ctrl push up
+# bind down:shift,ctrl push down
+# bind right:shift,ctrl push right
+# bind left:shift,ctrl push left
 
 # full and half size windows
 bind return:ctrl,shift ${resize_fullscreen}
@@ -44,8 +44,11 @@ bind esc:ctrl grid padding:2 2560x1440:10,6 1920x1080:10,6 1680x1050:8,4 1440x90
 layout landLayout 'Airmail' push left bar-resize:(screenSizeX/10)*7
 layout landLayout 'Google Chrome' push left bar-resize:(screenSizeX/10)*7
 layout landLayout 'HipChat' push left bar-resize:(screenSizeX/10)*5
-layout airLayout 'Twitterrific' push right bar-resize:(screenSizeX/10)*2
+layout landLayout 'Twitterrific' push right bar-resize:(screenSizeX/10)*2
 layout landLayout 'Sublime Text' push left bar-resize:screenSizeX
+
+default landLayout resolutions:1920x1080
+bind l:l,shift,ctrl layout landLayout
 
 layout airLayout 'Airmail' push left bar-resize:screenSizeX
 layout airLayout 'Google Chrome' push left bar-resize:screenSizeX
@@ -53,8 +56,5 @@ layout airLayout 'HipChat' push left bar-resize:(screenSizeX/8)*6
 layout airLayout 'Twitterrific' push right bar-resize:(screenSizeX/8)*2
 layout airLayout 'Sublime Text' push left bar-resize:screenSizeX
 
-default landLayout resolutions:1920x1080
 default airLayout resolutions:1440x900
-
-bind l:l,shift,ctrl layout landLayout
 bind a:l,shift,ctrl layout airLayout
