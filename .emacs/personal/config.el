@@ -23,6 +23,8 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
+(setq create-lockfiles nil)
+
 ;; projectile
 (setq projectile-switch-project-action 'projectile-dired)
 
