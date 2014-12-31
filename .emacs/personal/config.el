@@ -35,7 +35,13 @@
 (setq-default line-spacing 3)
 
 ;; start maximized
-(toggle-frame-fullscreen)
+;; (toggle-frame-fullscreen)
+(defun toggle-fullscreen ()
+  "Toggle full screen"
+  (interactive)
+  (set-frame-parameter
+   nil
+   'fullscreen (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
 
 ;; indent-guide
 (indent-guide-global-mode)
@@ -49,3 +55,6 @@
 (global-linum-mode)
 (setq linum-format "%3d ")
 (setq show-trailing-whitespace t)
+
+;; coffee
+(custom-set-variables '(coffee-tab-width 2))
