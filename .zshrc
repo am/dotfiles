@@ -62,3 +62,8 @@ export FLEX_HOME='/Volumes/Data/System/SDK/flex_sdk_4.11/'
 export PATH="/usr/local/heroku/bin:$PATH"
 
 alias gll='sh ~/src/dotfiles/bin/gll.sh'
+
+# Docker
+export DOCKER_CERT_PATH=/Users/am/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
+export DOCKER_HOST=tcp://192.168.59.103:2376
