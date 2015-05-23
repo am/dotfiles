@@ -3,7 +3,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(fringe-mode 8 nil (fringe)))
+ '(coffee-tab-width 2)
+ '(fringe-mode 8 nil (fringe))
+ '(json-reformat:indent-width 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

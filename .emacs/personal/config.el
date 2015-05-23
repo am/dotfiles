@@ -58,3 +58,19 @@
 
 ;; coffee
 (custom-set-variables '(coffee-tab-width 2))
+
+(setq js-indent-level 2)
+
+;; json-mode set indent level to 2
+(add-hook 'json-mode-hook
+          (lambda ()
+            (make-variable-buffer-local 'js-indent-level)
+            (setq js-indent-level 2)))
+
+;; multiple-cursors
+(require 'multiple-cursors)
+
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
