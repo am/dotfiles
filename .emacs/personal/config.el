@@ -22,12 +22,6 @@
 ;; indent-guide
 (require 'indent-guide)
 
-;; git-gutter
-(require 'git-gutter-fringe+)
-(set-face-foreground 'git-gutter-fr+-modified "yellow")
-(set-face-foreground 'git-gutter-fr+-added    "blue")
-(set-face-foreground 'git-gutter-fr+-deleted  "white")
-
 ;; autosave location
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
@@ -79,7 +73,6 @@
 
 ;; multiple-cursors
 (require 'multiple-cursors)
-
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
