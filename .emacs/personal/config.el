@@ -85,7 +85,17 @@
 (setq neo-theme (quote nerd))
 (setq neo-vc-integration (quote (face char)))
 (setq neo-window-width 30)
+(setq neo-persist-show nil)
 
 ;; expand region
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+;; macros
+(fset 'jira
+      [?\C-s ?t ?r ?i ?b ?- return ?\C-  ?\C-e ?\M-w ?\C-x ?\[ ?\[ ?T ?R ?I ?B ?- ?\C-y ?\] ? ])
+
+;; move-lines
+(add-to-list 'load-path "~/.emacs.d/personal/modules/")
+(require 'move-lines)
+(move-lines-binding)
