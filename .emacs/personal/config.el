@@ -72,6 +72,7 @@
 (setq json-reformat:indent-width 2)
 
 ;; multiple-cursors
+(prelude-require-packages '(multiple-cursors))
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -79,6 +80,7 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; neotree
+(prelude-require-packages '(neotree))
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 (setq neo-show-hidden-files t)
@@ -88,6 +90,7 @@
 (setq neo-persist-show nil)
 
 ;; expand region
+(prelude-require-packages '(expand-region))
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
