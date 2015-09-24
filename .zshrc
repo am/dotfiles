@@ -32,7 +32,7 @@ export UPDATE_ZSH_DAYS=1
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(osx gitfast sublime rhc tmux rails bundler git)
+plugins=(osx gitfast sublime rhc tmux rails bundler git history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -67,3 +67,6 @@ alias gll='sh ~/src/dotfiles/bin/gll.sh'
 export DOCKER_CERT_PATH=/Users/am/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
 export DOCKER_HOST=tcp://192.168.59.103:2376
+
+# npm
+alias nom="rm -rf node_modules && npm cache clear && npm i"
