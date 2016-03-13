@@ -42,11 +42,11 @@
 ;; start maximized
 ;; (toggle-frame-fullscreen)
 (defun toggle-fullscreen ()
-  "Toggle full screen"
+  "Toggle full screen."
   (interactive)
   (set-frame-parameter
-   nil
-   'fullscreen (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
+   nil 'fullscreen
+   (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
 
 ;; indent-guide
 (indent-guide-global-mode)
@@ -70,6 +70,7 @@
             (setq js-indent-level 2)))
 (setq js2-basic-offset 2)
 (setq json-reformat:indent-width 2)
+
 
 ;; multiple-cursors
 (prelude-require-packages '(multiple-cursors))
@@ -103,3 +104,27 @@
 (add-to-list 'load-path "~/.emacs.d/personal/modules/")
 (require 'move-lines)
 (move-lines-binding)
+
+;; search under cursor
+(global-set-key (kbd "M-s") 'isearch-forward-symbol-at-point) ; Command-s
+
+(require 'diminish)
+(diminish 'abbrev-mode "Abv")
+(diminish 'jiggle-mode)
+(diminish 'mouse-avoidance-mode "M")
+
+(require 'spaceline-config)
+(spaceline-spacemacs-theme)
+
+;; http://emacs.stackexchange.com/questions/14282/replace-splash-screen-with-list-of-recentf
+(require 'recentf) ;; Provided for the whole picture
+(require 'helm)
+(require 'helm-config)
+(setq initial-buffer-choice (helm-recentf))
+
+;; save sessions
+(setq desktop-path '("~/.emacs.d/.emacs.desktop"))
+(desktop-save-mode 1)
+(setq desktop-auto-save-timeout 5)
+
+;;; config.el ends here

@@ -6,6 +6,7 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="sunrise-am"
+# ZSH_TMUX_AUTOSTART=true
 
 # Example aliases
 alias zshconfig="st ~/.zshrc"
@@ -64,9 +65,14 @@ export PATH="/usr/local/heroku/bin:$PATH"
 alias gll='sh ~/src/dotfiles/bin/gll.sh'
 
 # Docker
-export DOCKER_CERT_PATH=/Users/am/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://192.168.59.103:2376
+eval "$(docker-machine env default)"
 
 # npm
 alias nom="rm -rf node_modules && npm cache clear && npm i"
+
+# android
+export PATH='/opt/platform-tools':$PATH
+
+
+# added by travis gem
+[ -f /Users/am/.travis/travis.sh ] && source /Users/am/.travis/travis.sh
