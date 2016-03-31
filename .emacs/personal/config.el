@@ -90,6 +90,7 @@
 (setq neo-vc-integration (quote (face char)))
 (setq neo-window-width 30)
 (setq neo-persist-show nil)
+(setq projectile-switch-project-action 'neotree-projectile-action)
 
 ;; expand region
 (prelude-require-packages '(expand-region))
