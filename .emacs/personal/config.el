@@ -32,7 +32,6 @@
 (defvar me/font-size-header       140                "The font size to use for headers.")
 (defvar me/font-size-mode-line    120                "The font size to use for the mode line.")
 
-(defconst tomorrow/dark          "#1a1a1a")
 (defconst tomorrow/background    "#2d2d2d")
 (defconst tomorrow/current-line  "#393939")
 (defconst tomorrow/selection     "#515151")
@@ -45,6 +44,23 @@
 (defconst tomorrow/aqua          "#66cccc")
 (defconst tomorrow/blue          "#6699cc")
 (defconst tomorrow/purple        "#cc99cc")
+
+;; Color blending to background
+(defconst tomorrow/red-db1       "#D16B6D")
+(defconst tomorrow/red-db2       "#B05E60")
+(defconst tomorrow/red-db3       "#905254")
+(defconst tomorrow/red-db4       "#6F4647")
+(defconst tomorrow/red-db5       "#4E393A")
+(defconst tomorrow/green-db1       "#87B287")
+(defconst tomorrow/green-db2       "#759775")
+(defconst tomorrow/green-db3       "#637D63")
+(defconst tomorrow/green-db4       "#516251")
+(defconst tomorrow/green-db5       "#3F483F")
+(defconst tomorrow/yellow-db1       "#DCB25D")
+(defconst tomorrow/yellow-db2       "#B99753")
+(defconst tomorrow/yellow-db3       "#967D4A")
+(defconst tomorrow/yellow-db4       "#736240")
+(defconst tomorrow/yellow-db5       "#504837")
 
 ;; For isolate package configuration, uses use-package
 ;; https://github.com/jwiegley/use-package
@@ -62,13 +78,28 @@
 (use-package color-theme-sanityinc-tomorrow
   :init
   (load-theme 'sanityinc-tomorrow-eighties t)
-  ;; TODO: check how to override linum style, now its being changed on custom.el
-  ;; (eval-after-load "linum"
-  ;;   '(set-face-attribute 'linum nil :foreground tomorrow/dark)
-  ;;   )
   :config
   (when (member me/font-family (font-family-list))
-    (set-face-attribute 'default nil :font me/font-family)))
+    (set-face-attribute 'default nil :font me/font-family))
+  ;; Ediff colors
+  (set-face-attribute 'ediff-odd-diff-A nil
+                      :background tomorrow/selection
+                      :foreground tomorrow/foreground
+                      :inverse-video nil)
+  (set-face-attribute 'ediff-odd-diff-B nil
+                      :background tomorrow/selection
+                      :foreground tomorrow/foreground
+                      :inverse-video nil)
+  (set-face-background 'ediff-odd-diff-C tomorrow/selection)
+  (set-face-background 'ediff-current-diff-A tomorrow/red-db5)
+  (set-face-background 'ediff-fine-diff-A tomorrow/red-db4)
+  (set-face-underline 'ediff-fine-diff-A tomorrow/red)
+  (set-face-background 'ediff-current-diff-B tomorrow/green-db5)
+  (set-face-background 'ediff-fine-diff-B tomorrow/green-db4)
+  (set-face-underline'ediff-fine-diff-B tomorrow/green)
+  (set-face-background 'ediff-current-diff-C tomorrow/yellow-db5)
+  (set-face-background 'ediff-fine-diff-C tomorrow/yellow-db4)
+ )
 
 ;; Multiple cursors, like sublime ;)
 (use-package multiple-cursors
@@ -157,6 +188,15 @@
     (let ((inhibit-mode-name-delight nil)) ad-do-it))
   (defadvice powerline-minor-modes (around delight-powerline-minor-modes activate)
     (let ((inhibit-mode-name-delight nil)) ad-do-it)))
+
+;; Show indent guide
+(use-package indent-guide
+  :init
+  (indent-guide-global-mode)
+  :config
+  (setq indent-guide-char "|")
+  (set-face-background 'indent-guide-face tomorrow/background)
+  (set-face-foreground 'indent-guide-face tomorrow/current-line))
 
 ;; Theming mode-line
 (use-package spaceline :demand t)
