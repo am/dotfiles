@@ -79,7 +79,24 @@
    ("C-c C->" . mc/mark-next-like-this)))
 
 ;; Jump through symbols
-(use-package dumb-jump)
+(use-package dumb-jump
+  :ensure t
+  :bind
+  (("C-M-g" . dumb-jump-go)
+   ("C-M-p" . dumb-jump-back)))
+
+;; Highlight symbols
+(use-package highlight-thing
+  :init
+  (add-hook 'prog-mode-hook 'highlight-thing-mode)
+  :config
+  (setq
+   highlight-thing-delay-seconds 1
+   highlight-thing-limit-to-defun t
+   highlight-thing-case-sensitive-p t)
+  (set-face-attribute 'highlight-thing nil
+                      :inherit nil
+                      :underline tomorrow/red))
 
 ;; DeMinifies and pretiffies js/css/html files
 (use-package web-beautify
@@ -128,7 +145,7 @@
    '(git-gutter:modified-sign " • ")
    '(git-gutter:added-sign " + ")
    '(git-gutter:deleted-sign " − "))
-  (set-face-foreground'git-gutter:modified tomorrow/aqua)
+  (set-face-foreground 'git-gutter:modified tomorrow/aqua)
   (set-face-foreground 'git-gutter:added tomorrow/green)
   (set-face-foreground 'git-gutter:deleted tomorrow/red)
   )
