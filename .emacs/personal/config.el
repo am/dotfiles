@@ -107,7 +107,11 @@
   (("C->" . mc/mark-next-like-this)
    ("C-<" . mc/mark-previous-like-this)
    ("C-S-c C-S-c" . mc/edit-lines)
-   ("C-c C->" . mc/mark-next-like-this)))
+   ("C-c C->" . mc/mark-next-like-this)
+   ("C-S-<mouse-1>" . mc/add-cursor-on-click)
+   ("C-' . mc-hide-unmatched-lines"))
+  :init
+  (setq mc/list-file "./mc-lists.el"))
 
 ;; Jump through symbols
 (use-package dumb-jump
