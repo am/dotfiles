@@ -99,6 +99,13 @@
   (set-face-underline'ediff-fine-diff-B tomorrow/green)
   (set-face-background 'ediff-current-diff-C tomorrow/yellow-db5)
   (set-face-background 'ediff-fine-diff-C tomorrow/yellow-db4)
+  (set-face-background 'helm-visible-mark tomorrow/green)
+  (set-face-foreground 'helm-visible-mark tomorrow/background)
+  (set-face-attribute 'helm-header nil
+                      :inherit 'unspecified
+                      :foreground tomorrow/aqua
+                      :background tomorrow/background
+                      :box nil)
  )
 
 ;; Multiple cursors, like sublime ;)
@@ -107,7 +114,6 @@
   (("C->" . mc/mark-next-like-this)
    ("C-<" . mc/mark-previous-like-this)
    ("C-S-c C-S-c" . mc/edit-lines)
-   ("C-c C->" . mc/mark-next-like-this)
    ("C-S-<mouse-1>" . mc/add-cursor-on-click)
    ("C-' . mc-hide-unmatched-lines"))
   :init
