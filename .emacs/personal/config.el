@@ -18,7 +18,8 @@
  projectile-completion-system 'grizzl            ; Projectile completion system
  uniquify-buffer-name-style 'forward             ; Uniquify buffer names
  linum-format " %d "
-)
+ js-indent-level 2
+ )
 
 (global-subword-mode 1)                          ; Iterate through CamelCase words
 (line-number-mode 1)                             ; Show the line number
@@ -96,7 +97,7 @@
   (set-face-underline 'ediff-fine-diff-A tomorrow/red)
   (set-face-background 'ediff-current-diff-B tomorrow/green-db5)
   (set-face-background 'ediff-fine-diff-B tomorrow/green-db4)
-  (set-face-underline'ediff-fine-diff-B tomorrow/green)
+  (set-face-underline 'ediff-fine-diff-B tomorrow/green)
   (set-face-background 'ediff-current-diff-C tomorrow/yellow-db5)
   (set-face-background 'ediff-fine-diff-C tomorrow/yellow-db4)
   (set-face-background 'helm-visible-mark tomorrow/green)
@@ -106,7 +107,7 @@
                       :foreground tomorrow/aqua
                       :background tomorrow/background
                       :box nil)
- )
+  (set-face-attribute 'js2-error nil :underline '(:color "#6D0900" :style wave)))
 
 ;; Multiple cursors, like sublime ;)
 (use-package multiple-cursors
@@ -117,7 +118,7 @@
    ("C-S-<mouse-1>" . mc/add-cursor-on-click)
    ("C-' . mc-hide-unmatched-lines"))
   :init
-  (setq mc/list-file "./mc-lists.el"))
+  (setq mc/list-file "~/.emacs.d/personal/mc-lists.el"))
 
 ;; Jump through symbols
 (use-package dumb-jump
@@ -158,11 +159,18 @@
 (use-package neotree
   :config
   (setq-default
+   neo-window-fixed-size nil
    neo-show-hidden-files t
-   neo-vc-integration (quote (face char))
-   neo-window-tree-width 30
    neo-persist-show nil
-   neo-theme 'icons))
+   neo-vc-integration '(face)
+   neo-theme 'nerd)
+  (set-face-foreground 'neo-root-dir-face tomorrow/orange)
+  (set-face-foreground 'neo-dir-link-face tomorrow/blue)
+  (set-face-foreground 'neo-expand-btn-face tomorrow/blue)
+  (set-face-foreground 'neo-vc-added-face tomorrow/green)
+  (set-face-foreground 'neo-vc-edited-face tomorrow/yellow)
+  (set-face-foreground 'neo-vc-conflict-face tomorrow/red)
+  )
 
 ;; Helm everywhere
 (use-package helm
@@ -176,16 +184,26 @@
    helm-recentf-fuzzy-match t)
   (helm-mode t))
 
+;; Web-mode configuration
+(use-package web-mode
+  :no-require t
+  :init
+  (progn
+    (setq web-mode-script-padding 2)
+    (setq web-mode-style-padding 2)
+    (setq web-mode-code-indent-offset 2)
+    (setq web-mode-markup-indent-offset 2)))
+
 ;; Gutter diff changes with live update
 (use-package git-gutter
   :ensure t
   :init
   (global-git-gutter-mode t)
   :config
-  (custom-set-variables
-   '(git-gutter:modified-sign " • ")
-   '(git-gutter:added-sign " + ")
-   '(git-gutter:deleted-sign " − "))
+  (progn
+    (setq git-gutter:modified-sign " • ")
+    (setq git-gutter:added-sign " + ")
+    (setq git-gutter:deleted-sign " - "))
   (set-face-foreground 'git-gutter:modified tomorrow/aqua)
   (set-face-foreground 'git-gutter:added tomorrow/green)
   (set-face-foreground 'git-gutter:deleted tomorrow/red)
