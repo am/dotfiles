@@ -18,5 +18,6 @@
         eval-buffer
         helm-show-kill-ring
         magit-status
+        mouse-set-region
         previous-buffer
         ))

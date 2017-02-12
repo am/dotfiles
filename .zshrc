@@ -6,11 +6,12 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="sunrise-am"
-# ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART=true
 
 # Example aliases
 alias zshconfig="st ~/.zshrc"
 alias ohmyzsh="st ~/.oh-my-zsh"
+alias wib="curl http://wttr.in/Barcelona"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -33,7 +34,18 @@ export UPDATE_ZSH_DAYS=1
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(osx gitfast sublime rhc tmux rails bundler git history-substring-search)
+plugins=(
+    bundler
+    encode64
+    git
+    gitfast
+    history-substring-search
+    rails
+    rhc
+    sublime
+    tmux
+    osx
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -50,7 +62,7 @@ export LC_ALL=en_US.UTF-8
 # http://superuser.com/questions/561067/zsh-prompts-to-correct-executable-when-running-bundle-exec
 alias bundle='nocorrect bundle'
 
-export EDITOR=opt/boxen/homebrew/bin/emacs
+export EDITOR=/opt/boxen/homebrew/bin/emacs
 export HOMEBREW_HOME="$HOMEBREW_ROOT"
 
 # node shims
@@ -65,7 +77,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 alias gll='sh ~/src/dotfiles/bin/gll.sh'
 
 # Docker
-eval "$(docker-machine env default)"
+# eval "$(docker-machine env default)"
 
 # npm
 alias nom="rm -rf node_modules && npm cache clear && npm i"
@@ -73,6 +85,8 @@ alias nom="rm -rf node_modules && npm cache clear && npm i"
 # android
 export PATH='/opt/platform-tools':$PATH
 
-
 # added by travis gem
 [ -f /Users/am/.travis/travis.sh ] && source /Users/am/.travis/travis.sh
+
+# secrets
+source $HOME/.secret
