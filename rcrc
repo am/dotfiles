@@ -1,1 +1,1 @@
-EXCLUDES="bin README"
+EXCLUDES="bin README.md"
