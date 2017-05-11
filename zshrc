@@ -50,9 +50,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# am Boxen
-[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
-
 # autojump
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
@@ -60,34 +57,7 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# http://superuser.com/questions/561067/zsh-prompts-to-correct-executable-when-running-bundle-exec
-alias bundle='nocorrect bundle'
-
 export EDITOR=/opt/boxen/homebrew/bin/emacs
-export HOMEBREW_HOME="$HOMEBREW_ROOT"
-
-# node shims
-export PATH='/opt/boxen/nodenv/shims/':$PATH
-
-# flex
-export FLEX_HOME='/Volumes/Data/System/SDK/flex_sdk_4.11/'
-
-# Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-alias gll='sh ~/src/dotfiles/bin/gll.sh'
-
-# Docker
-# eval "$(docker-machine env default)"
-
-# npm
-alias nom="rm -rf node_modules && npm cache clear && npm i"
-
-# android
-export PATH='/opt/platform-tools':$PATH
-
-# added by travis gem
-[ -f /Users/am/.travis/travis.sh ] && source /Users/am/.travis/travis.sh
 
 # secrets
 source $HOME/.secret
