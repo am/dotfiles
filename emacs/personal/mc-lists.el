@@ -6,7 +6,9 @@
         crux-move-beginning-of-line
         haml-electric-backspace
         helm-M-x
+        helm-projectile-ag
         mac-mwheel-scroll
+        markdown-exdent-or-delete
         sp-backward-delete-char
         ))
 

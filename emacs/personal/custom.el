@@ -14,7 +14,7 @@
  '(nxml-child-indent 4)
  '(package-selected-packages
    (quote
-    (web flymake-jshint handlebars-mode puppet-mode smex ido-ubiquitous flx-ido indent-guide highlight-thing sass-mode git-gutter web-beautify color-theme-sanityinc-tomorrow markdown-mode nyan-mode nyan guru spaceline delight neotree all-the-icons dumb-jump multiple-cursors vkill exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
+    (yaml-mode web flymake-jshint handlebars-mode puppet-mode smex ido-ubiquitous flx-ido indent-guide highlight-thing sass-mode git-gutter web-beautify color-theme-sanityinc-tomorrow markdown-mode nyan-mode nyan guru spaceline delight neotree all-the-icons dumb-jump multiple-cursors vkill exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(tab-always-indent (quote complete))
  '(web-mode-enable-auto-pairing nil))
