@@ -1,1 +1,2 @@
 EXCLUDES="bin README.md"
+UNDOTTED="Brewfile"

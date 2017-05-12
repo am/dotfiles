@@ -7,7 +7,7 @@ ZSH_CUSTOM=$HOME/.oh-my-zsh--custom
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="sunrise-am"
-ZSH_TMUX_AUTOSTART=true
+# ZSH_TMUX_AUTOSTART=true
 
 # Example aliases
 alias zshconfig="st ~/.zshrc"
@@ -50,9 +50,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# autojump
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -61,3 +58,13 @@ export EDITOR=/opt/boxen/homebrew/bin/emacs
 
 # secrets
 source $HOME/.secret
+
+# load autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
+# rbenv init
+eval "$(rbenv init -)"
