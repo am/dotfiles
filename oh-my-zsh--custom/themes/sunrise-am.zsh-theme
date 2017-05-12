@@ -14,7 +14,7 @@ RESET=$reset_color
 
 eval S='$FG[008]'
 
-PROMPTCOLOR="" PREFIX="—";
+PROMPTCOLOR="" PROMPT_PREFIX="—";
 
 TIME="%{$S%}%*%{$RESET%}"
 
@@ -75,7 +75,7 @@ function custom_git_prompt() {
 }
 
 # %B sets bold text
-PROMPT='$PREFIX $TIME %2~ $(custom_git_prompt)%{$M%}%B»%b%{$RESET%} '
+PROMPT='$PROMPT_PREFIX $TIME %2~ $(custom_git_prompt)%{$M%}%B»%b%{$RESET%} '
 RPS1="${return_code}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$Y%}‹"
