@@ -1,2 +1,2 @@
-EXCLUDES="bin README.md"
+EXCLUDES="bin script README.md"
 UNDOTTED="Brewfile"

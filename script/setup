@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Reveal IP address, hostname, OS version, etc. when clicking the clock
+# in the login window
+sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
+# Set fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -float 1
+
+# Show the ~/Library folder
+chflags nohidden ~/Library
+
+# Show the /Volumes folder
+sudo chflags nohidden /Volumes
+
+# Change minimize/maximize window effect
+defaults write com.apple.dock mineffect -string "scale"
+
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
+
+echo "Done. Note that some of these changes require a logout/restart to take effect."
