@@ -226,6 +226,9 @@
   (set-face-background 'indent-guide-face tomorrow/background)
   (set-face-foreground 'indent-guide-face tomorrow/current-line))
 
+;; Duplicate line
+(use-package duplicate-thing :ensure t)
+
 ;; Theming mode-line
 (use-package spaceline :demand t)
 (use-package spaceline-config
