@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+#################
+# system settings
+
 # Reveal IP address, hostname, OS version, etc. when clicking the clock
 # in the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
@@ -18,5 +21,22 @@ defaults write com.apple.dock mineffect -string "scale"
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
+
+# Sleep time
+sudo systemsetup -setcomputersleep 10
+
+#########
+# ohmyzsh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+#################
+# emacs - prelude
+curl -L https://git.io/epre | sh
+
+###############
+# Dotfiles init
+brew tap thoughtbot/formulae
+brew install rcm
+env RCRC=/Users/am/.dotfiles/rcrc rcup
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."

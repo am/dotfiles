@@ -54,7 +54,10 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export EDITOR=/opt/boxen/homebrew/bin/emacs
+export EDITOR=/Applications/Emacs.app/Contents/MacOS/Emacs
+
+# Add homwbrew sbin to path
+export PATH="/usr/local/sbin:$PATH"
 
 # secrets
 source $HOME/.secret
