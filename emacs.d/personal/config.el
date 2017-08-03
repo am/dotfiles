@@ -29,9 +29,9 @@
 
 ;; Themes and colors
 (defvar me/font-family            "Operator Mono"      "The font to use.")
-(defvar me/font-size-default      130                  "The font size to use for default text.")
-(defvar me/font-size-header       150                  "The font size to use for headers.")
-(defvar me/font-size-mode-line    130                  "The font size to use for the mode line.")
+(defvar me/font-size-default      140                  "The font size to use for default text.")
+(defvar me/font-size-header       160                  "The font size to use for headers.")
+(defvar me/font-size-mode-line    140                  "The font size to use for the mode line.")
 
 (defconst tomorrow/background    "#2d2d2d")
 (defconst tomorrow/current-line  "#393939")
