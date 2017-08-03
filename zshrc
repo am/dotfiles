@@ -76,3 +76,6 @@ eval "$(rbenv init -)"
 export ANDROID_HOME=${HOME}/Library/Android/sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+
+# webos CLI
+export PATH=${PATH}:/opt/webOS_TV_SDK/CLI/bin

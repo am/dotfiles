@@ -31,6 +31,7 @@ brew 'siege'
 brew 'the_silver_searcher'
 brew 'tmux'
 brew 'webp'
+brew 'yarn'
 brew 'zlib'
 brew 'zsh'
 

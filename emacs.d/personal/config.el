@@ -28,10 +28,10 @@
 (global-diff-hl-mode 0)                          ; Disable diff-hl since we use git-gutter
 
 ;; Themes and colors
-(defvar me/font-family            "DejaVu Sans Mono" "The font to use.")
-(defvar me/font-size-default      120                "The font size to use for default text.")
-(defvar me/font-size-header       140                "The font size to use for headers.")
-(defvar me/font-size-mode-line    120                "The font size to use for the mode line.")
+(defvar me/font-family            "Operator Mono"      "The font to use.")
+(defvar me/font-size-default      130                  "The font size to use for default text.")
+(defvar me/font-size-header       150                  "The font size to use for headers.")
+(defvar me/font-size-mode-line    130                  "The font size to use for the mode line.")
 
 (defconst tomorrow/background    "#2d2d2d")
 (defconst tomorrow/current-line  "#393939")
@@ -81,7 +81,7 @@
   (load-theme 'sanityinc-tomorrow-eighties t)
   :config
   (when (member me/font-family (font-family-list))
-    (set-face-attribute 'default nil :font me/font-family))
+    (set-face-attribute 'default nil :font me/font-family :height me/font-size-default))
   ;; Ediff colors
   (set-face-attribute 'ediff-odd-diff-A nil
                       :background tomorrow/selection

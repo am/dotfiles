@@ -10,6 +10,8 @@
         mac-mwheel-scroll
         markdown-exdent-or-delete
         sp-backward-delete-char
+        sp-backward-kill-word
+        yaml-electric-backspace
         ))
 
 (setq mc/cmds-to-run-once
@@ -18,8 +20,12 @@
         coffee-dedent-line-backspace
         end-of-buffer
         eval-buffer
+        eval-defun
+        helm-mini
+        helm-recentf
         helm-show-kill-ring
         magit-status
         mouse-set-region
+        next-buffer
         previous-buffer
         ))
