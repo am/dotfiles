@@ -107,7 +107,14 @@
                       :foreground tomorrow/aqua
                       :background tomorrow/background
                       :box nil)
-  (set-face-attribute 'js2-error nil :underline '(:color "#6D0900" :style wave)))
+  (set-face-attribute 'js2-error nil :underline '(:color "#6D0900" :style wave))
+  (set-face-attribute 'mode-line nil
+                      :box `(:line-width 8 :color ,tomorrow/current-line)
+                      :background tomorrow/current-line)
+  (set-face-attribute 'mode-line-inactive nil
+                      :box `(:line-width 8 :color ,tomorrow/background)
+                      :background tomorrow/background
+                      :foreground tomorrow/selection))
 
 ;; Multiple cursors, like sublime ;)
 (use-package multiple-cursors
@@ -230,69 +237,71 @@
 (use-package duplicate-thing :ensure t)
 
 ;; Theming mode-line
-(use-package spaceline :demand t)
-(use-package spaceline-config
-  :ensure nil
-  :after spaceline
 
-  :config
+;; (use-package spaceline :demand t)
+;; (use-package spaceline-config
+;;   :ensure nil
+;;   :after spaceline
 
-  ;; Configure the mode-line
-  (setq-default
-   mode-line-format '("%e" (:eval (spaceline-ml-main)))
-   powerline-default-separator 'slant
-   powerline-height 22
-   spaceline-highlight-face-func 'spaceline-highlight-face-modified
-   spaceline-flycheck-bullet "• %s"
-   spaceline-separator-dir-left '(left . left)
-   spaceline-separator-dir-right '(right . right))
-  (spaceline-helm-mode)
+;;   :config
 
-  ;; Build the segments
-  (spaceline-define-segment me/helm-follow
-    (when (and (bound-and-true-p helm-alive-p)
-               spaceline--helm-current-source
-               (eq 1 (cdr (assq 'follow spaceline--helm-current-source))))
-      (propertize "" 'face 'success)))
+;;   ;; Configure the mode-line
+;;   (setq-default
+;;    mode-line-format '("%e" (:eval (spaceline-ml-main)))
+;;    powerline-default-separator nil
+;;    powerline-height 22
+;;    spaceline-highlight-face-func 'spaceline-highlight-face-modified
+;;    spaceline-flycheck-bullet "• %s"
+;;    spaceline-separator-dir-left '(left . left)
+;;    spaceline-separator-dir-right '(right . right))
+;;   (spaceline-helm-mode)
+;;   (powerline-reset)
 
-  ;; Build the mode-lines
-  (spaceline-install
-   `((major-mode :face highlight-face)
-     ((remote-host buffer-id line) :separator ":")
-     anzu)
-   `((selection-info)
-     ((flycheck-error flycheck-warning flycheck-info) :when active)
-     ((projectile-root version-control) :separator "  ")
-     (hud)
-     (global :face highlight-face)))
-  (spaceline-install
-   'helm
-   '((helm-buffer-id :face spaceline-read-only)
-     helm-number
-     (me/helm-follow :fallback "")
-     helm-prefix-argument)
-   '((helm-help :face spaceline-read-only)))
+;;   ;; Build the segments
+;;   (spaceline-define-segment me/helm-follow
+;;     (when (and (bound-and-true-p helm-alive-p)
+;;                spaceline--helm-current-source
+;;                (eq 1 (cdr (assq 'follow spaceline--helm-current-source))))
+;;       (propertize "" 'face 'success)))
 
-  ;; Customize the mode-line
-  (set-face-attribute 'mode-line nil
-                      :box `(:line-width 1 :color ,tomorrow/selection)
-                      :foreground tomorrow/comment
-                      :height me/font-size-mode-line)
-  (set-face-attribute 'mode-line-inactive nil
-                      :box `(:line-width 1 :color ,tomorrow/selection)
-                      :foreground tomorrow/comment
-                      :height me/font-size-mode-line)
-  (set-face-attribute 'powerline-active2 nil :background tomorrow/background)
-  (set-face-attribute 'powerline-inactive2 nil :background tomorrow/background)
-  (set-face-attribute 'spaceline-flycheck-error nil :foreground tomorrow/red)
-  (set-face-attribute 'spaceline-flycheck-info nil :foreground tomorrow/blue)
-  (set-face-attribute 'spaceline-flycheck-warning nil :foreground tomorrow/orange)
-  (set-face-attribute 'spaceline-modified nil
-                      :background tomorrow/red :foreground tomorrow/yellow)
-  (set-face-attribute 'spaceline-read-only nil
-                      :background tomorrow/blue :foreground tomorrow/foreground)
-  (set-face-attribute 'spaceline-unmodified nil
-                      :background tomorrow/green :foreground tomorrow/current-line))
+;;   ;; Build the mode-lines
+;;   (spaceline-install
+;;    `((major-mode :face highlight-face)
+;;      ((remote-host buffer-id line) :separator ":")
+;;      anzu)
+;;    `((selection-info)
+;;      ((flycheck-error flycheck-warning flycheck-info) :when active)
+;;      ((projectile-root version-control) :separator "  ")
+;;      (hud)
+;;      (global :face highlight-face)))
+;;   (spaceline-install
+;;    'helm
+;;    '((helm-buffer-id :face spaceline-read-only)
+;;      helm-number
+;;      (me/helm-follow :fallback "")
+;;      helm-prefix-argument)
+;;    '((helm-help :face spaceline-read-only)))
+
+;;   ;; Customize the mode-line
+;;   (set-face-attribute 'mode-line nil
+;;                       :box `(:line-width 1 :color ,tomorrow/selection)
+;;                       :foreground tomorrow/comment
+;;                       :height me/font-size-mode-line)
+;;   (set-face-attribute 'mode-line-inactive nil
+;;                       :box `(:line-width 1 :color ,tomorrow/selection)
+;;                       :foreground tomorrow/comment
+;;                       :height me/font-size-mode-line)
+;;   (set-face-attribute 'powerline-active2 nil :background tomorrow/background)
+;;   (set-face-attribute 'powerline-inactive2 nil :background tomorrow/background)
+;;   (set-face-attribute 'spaceline-flycheck-error nil :foreground tomorrow/red)
+;;   (set-face-attribute 'spaceline-flycheck-info nil :foreground tomorrow/blue)
+;;   (set-face-attribute 'spaceline-flycheck-warning nil :foreground tomorrow/orange)
+;;   (set-face-attribute 'spaceline-modified nil
+;;                       :background tomorrow/red :foreground tomorrow/yellow)
+;;   (set-face-attribute 'spaceline-read-only nil
+;;                       :background tomorrow/blue :foreground tomorrow/foreground)
+;;   (set-face-attribute 'spaceline-unmodified nil
+;;                       :background tomorrow/green :foreground tomorrow/current-line))
 
 ;; Utils
 
@@ -321,5 +330,9 @@
 ;; Extract Jira ticket number on magit commit buffer
 (fset 'jira
       [?\C-s ?t ?r ?i ?b ?- return ?\C-  ?\C-e ?\M-w ?\C-x ?\[ ?\[ ?T ?R ?I ?B ?- ?\C-y ?\] ? ])
+
+;; scroll
+(setq mouse-wheel-scroll-amount '(1))
+(setq mouse-wheel-progressive-speed nil)
 
 ;;; config.el ends here
