@@ -33,36 +33,6 @@
 (defvar me/font-size-header       160                  "The font size to use for headers.")
 (defvar me/font-size-mode-line    140                  "The font size to use for the mode line.")
 
-(defconst tomorrow/background    "#2d2d2d")
-(defconst tomorrow/current-line  "#393939")
-(defconst tomorrow/selection     "#515151")
-(defconst tomorrow/foreground    "#cccccc")
-(defconst tomorrow/comment       "#999999")
-(defconst tomorrow/red           "#f2777a")
-(defconst tomorrow/orange        "#f99157")
-(defconst tomorrow/yellow        "#ffcc66")
-(defconst tomorrow/green         "#99cc99")
-(defconst tomorrow/aqua          "#66cccc")
-(defconst tomorrow/blue          "#6699cc")
-(defconst tomorrow/purple        "#cc99cc")
-
-;; Color blending to background
-(defconst tomorrow/red-db1       "#D16B6D")
-(defconst tomorrow/red-db2       "#B05E60")
-(defconst tomorrow/red-db3       "#905254")
-(defconst tomorrow/red-db4       "#6F4647")
-(defconst tomorrow/red-db5       "#4E393A")
-(defconst tomorrow/green-db1       "#87B287")
-(defconst tomorrow/green-db2       "#759775")
-(defconst tomorrow/green-db3       "#637D63")
-(defconst tomorrow/green-db4       "#516251")
-(defconst tomorrow/green-db5       "#3F483F")
-(defconst tomorrow/yellow-db1       "#DCB25D")
-(defconst tomorrow/yellow-db2       "#B99753")
-(defconst tomorrow/yellow-db3       "#967D4A")
-(defconst tomorrow/yellow-db4       "#736240")
-(defconst tomorrow/yellow-db5       "#504837")
-
 ;; For isolate package configuration, uses use-package
 ;; https://github.com/jwiegley/use-package
 
@@ -78,43 +48,30 @@
 ;; Load the theme
 (use-package color-theme-sanityinc-tomorrow
   :init
-  (load-theme 'sanityinc-tomorrow-eighties t)
+  (disable-theme 'zenburn)
+  (load-theme 'sanityinc-tomorrow-night t)
   :config
+  ;; set colors
+  (defvar color/background (cdr (assoc 'background (cdar color-theme-sanityinc-tomorrow-colors))))
+  (defvar color/current-line (cdr (assoc 'current-line (cdar color-theme-sanityinc-tomorrow-colors))))
+  (defvar color/contrast-bg (cdr (assoc 'contrast-bg (cdar color-theme-sanityinc-tomorrow-colors))))
+  (defvar color/hightlight (cdr (assoc 'hightlight (cdar color-theme-sanityinc-tomorrow-colors))))
+  (defvar color/foreground (cdr (assoc 'foreground (cdar color-theme-sanityinc-tomorrow-colors))))
+  (defvar color/comment (cdr (assoc 'comment (cdar color-theme-sanityinc-tomorrow-colors))))
+  (defvar color/red (cdr (assoc 'red (cdar color-theme-sanityinc-tomorrow-colors))))
+  (defvar color/orange (cdr (assoc 'orange (cdar color-theme-sanityinc-tomorrow-colors))))
+  (defvar color/yellow (cdr (assoc 'yellow (cdar color-theme-sanityinc-tomorrow-colors))))
+  (defvar color/green (cdr (assoc 'green (cdar color-theme-sanityinc-tomorrow-colors))))
+  (defvar color/aqua (cdr (assoc 'aqua (cdar color-theme-sanityinc-tomorrow-colors))))
+  (defvar color/blue (cdr (assoc 'blue (cdar color-theme-sanityinc-tomorrow-colors))))
+  (defvar color/purple (cdr (assoc 'purple (cdar color-theme-sanityinc-tomorrow-colors))))
+  ;; set font
   (when (member me/font-family (font-family-list))
     (set-face-attribute 'default nil :font me/font-family :height me/font-size-default))
-  ;; Ediff colors
-  (set-face-attribute 'ediff-odd-diff-A nil
-                      :background tomorrow/selection
-                      :foreground tomorrow/foreground
-                      :inverse-video nil)
-  (set-face-attribute 'ediff-odd-diff-B nil
-                      :background tomorrow/selection
-                      :foreground tomorrow/foreground
-                      :inverse-video nil)
-  (set-face-background 'ediff-odd-diff-C tomorrow/selection)
-  (set-face-background 'ediff-current-diff-A tomorrow/red-db5)
-  (set-face-background 'ediff-fine-diff-A tomorrow/red-db4)
-  (set-face-underline 'ediff-fine-diff-A tomorrow/red)
-  (set-face-background 'ediff-current-diff-B tomorrow/green-db5)
-  (set-face-background 'ediff-fine-diff-B tomorrow/green-db4)
-  (set-face-underline 'ediff-fine-diff-B tomorrow/green)
-  (set-face-background 'ediff-current-diff-C tomorrow/yellow-db5)
-  (set-face-background 'ediff-fine-diff-C tomorrow/yellow-db4)
-  (set-face-background 'helm-visible-mark tomorrow/green)
-  (set-face-foreground 'helm-visible-mark tomorrow/background)
-  (set-face-attribute 'helm-header nil
-                      :inherit 'unspecified
-                      :foreground tomorrow/aqua
-                      :background tomorrow/background
-                      :box nil)
-  (set-face-attribute 'js2-error nil :underline '(:color "#6D0900" :style wave))
+  ;; set mode-line
   (set-face-attribute 'mode-line nil
-                      :box `(:line-width 8 :color ,tomorrow/current-line)
-                      :background tomorrow/current-line)
-  (set-face-attribute 'mode-line-inactive nil
-                      :box `(:line-width 8 :color ,tomorrow/background)
-                      :background tomorrow/background
-                      :foreground tomorrow/selection))
+                      :box `(:line-width 10 :color , color/current-line)
+                      :background color/current-line))
 
 ;; Multiple cursors, like sublime ;)
 (use-package multiple-cursors
@@ -145,7 +102,7 @@
    highlight-thing-case-sensitive-p t)
   (set-face-attribute 'highlight-thing nil
                       :inherit nil
-                      :underline tomorrow/red))
+                      :underline color/yellow))
 
 ;; DeMinifies and pretiffies js/css/html files
 (use-package web-beautify
@@ -171,12 +128,12 @@
    neo-persist-show nil
    neo-vc-integration '(face)
    neo-theme 'nerd)
-  (set-face-foreground 'neo-root-dir-face tomorrow/orange)
-  (set-face-foreground 'neo-dir-link-face tomorrow/blue)
-  (set-face-foreground 'neo-expand-btn-face tomorrow/blue)
-  (set-face-foreground 'neo-vc-added-face tomorrow/green)
-  (set-face-foreground 'neo-vc-edited-face tomorrow/yellow)
-  (set-face-foreground 'neo-vc-conflict-face tomorrow/red)
+  ;; (set-face-foreground 'neo-root-dir-face color/orange)
+  ;; (set-face-foreground 'neo-dir-link-face color/blue)
+  ;; (set-face-foreground 'neo-expand-btn-face color/blue)
+  ;; (set-face-foreground 'neo-vc-added-face color/green)
+  ;; (set-face-foreground 'neo-vc-edited-face color/yellow)
+  ;; (set-face-foreground 'neo-vc-conflict-face color/red)
   )
 
 ;; Helm everywhere
@@ -211,9 +168,9 @@
     (setq git-gutter:modified-sign " • ")
     (setq git-gutter:added-sign " + ")
     (setq git-gutter:deleted-sign " - "))
-  (set-face-foreground 'git-gutter:modified tomorrow/aqua)
-  (set-face-foreground 'git-gutter:added tomorrow/green)
-  (set-face-foreground 'git-gutter:deleted tomorrow/red)
+  ;; (set-face-foreground 'git-gutter:modified tomorrow/aqua)
+  ;; (set-face-foreground 'git-gutter:added tomorrow/green)
+  ;; (set-face-foreground 'git-gutter:deleted tomorrow/red)
   )
 
 ;; Customize minor modes mode-line
@@ -230,8 +187,9 @@
   (indent-guide-global-mode)
   :config
   (setq indent-guide-char "|")
-  (set-face-background 'indent-guide-face tomorrow/background)
-  (set-face-foreground 'indent-guide-face tomorrow/current-line))
+  ;; (set-face-background 'indent-guide-face tomorrow/background)
+  ;; (set-face-foreground 'indent-guide-face tomorrow/current-line)
+  )
 
 ;; Duplicate line
 (use-package duplicate-thing :ensure t)
