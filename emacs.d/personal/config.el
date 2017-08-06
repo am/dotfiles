@@ -43,35 +43,27 @@
    use-package-always-defer t
    use-package-always-ensure t))
 
+(defvar me/theme 'sanityinc-tomorrow-night)
+(defvar me/theme-scheme 'night)
+
+(defun get-theme-color (color)
+  (assoc-default color (assoc me/theme-scheme color-theme-sanityinc-tomorrow-colors)))
+
 ;; Packages
 
 ;; Load the theme
 (use-package color-theme-sanityinc-tomorrow
   :init
   (disable-theme 'zenburn)
-  (load-theme 'sanityinc-tomorrow-night t)
+  (load-theme me/theme t)
   :config
-  ;; set colors
-  (defvar color/background (cdr (assoc 'background (cdar color-theme-sanityinc-tomorrow-colors))))
-  (defvar color/current-line (cdr (assoc 'current-line (cdar color-theme-sanityinc-tomorrow-colors))))
-  (defvar color/contrast-bg (cdr (assoc 'contrast-bg (cdar color-theme-sanityinc-tomorrow-colors))))
-  (defvar color/hightlight (cdr (assoc 'hightlight (cdar color-theme-sanityinc-tomorrow-colors))))
-  (defvar color/foreground (cdr (assoc 'foreground (cdar color-theme-sanityinc-tomorrow-colors))))
-  (defvar color/comment (cdr (assoc 'comment (cdar color-theme-sanityinc-tomorrow-colors))))
-  (defvar color/red (cdr (assoc 'red (cdar color-theme-sanityinc-tomorrow-colors))))
-  (defvar color/orange (cdr (assoc 'orange (cdar color-theme-sanityinc-tomorrow-colors))))
-  (defvar color/yellow (cdr (assoc 'yellow (cdar color-theme-sanityinc-tomorrow-colors))))
-  (defvar color/green (cdr (assoc 'green (cdar color-theme-sanityinc-tomorrow-colors))))
-  (defvar color/aqua (cdr (assoc 'aqua (cdar color-theme-sanityinc-tomorrow-colors))))
-  (defvar color/blue (cdr (assoc 'blue (cdar color-theme-sanityinc-tomorrow-colors))))
-  (defvar color/purple (cdr (assoc 'purple (cdar color-theme-sanityinc-tomorrow-colors))))
   ;; set font
   (when (member me/font-family (font-family-list))
     (set-face-attribute 'default nil :font me/font-family :height me/font-size-default))
   ;; set mode-line
   (set-face-attribute 'mode-line nil
-                      :box `(:line-width 10 :color , color/current-line)
-                      :background color/current-line))
+                      :box `(:line-width 10 :color , (get-theme-color 'current-line))
+                      :background (get-theme-color 'current-line)))
 
 ;; Multiple cursors, like sublime ;)
 (use-package multiple-cursors
@@ -102,7 +94,7 @@
    highlight-thing-case-sensitive-p t)
   (set-face-attribute 'highlight-thing nil
                       :inherit nil
-                      :underline color/yellow))
+                      :underline (get-theme-color 'yellow)))
 
 ;; DeMinifies and pretiffies js/css/html files
 (use-package web-beautify
@@ -127,14 +119,7 @@
    neo-show-hidden-files t
    neo-persist-show nil
    neo-vc-integration '(face)
-   neo-theme 'nerd)
-  ;; (set-face-foreground 'neo-root-dir-face color/orange)
-  ;; (set-face-foreground 'neo-dir-link-face color/blue)
-  ;; (set-face-foreground 'neo-expand-btn-face color/blue)
-  ;; (set-face-foreground 'neo-vc-added-face color/green)
-  ;; (set-face-foreground 'neo-vc-edited-face color/yellow)
-  ;; (set-face-foreground 'neo-vc-conflict-face color/red)
-  )
+   neo-theme 'nerd))
 
 ;; Helm everywhere
 (use-package helm
@@ -167,11 +152,7 @@
   (progn
     (setq git-gutter:modified-sign " • ")
     (setq git-gutter:added-sign " + ")
-    (setq git-gutter:deleted-sign " - "))
-  ;; (set-face-foreground 'git-gutter:modified tomorrow/aqua)
-  ;; (set-face-foreground 'git-gutter:added tomorrow/green)
-  ;; (set-face-foreground 'git-gutter:deleted tomorrow/red)
-  )
+    (setq git-gutter:deleted-sign " - ")))
 
 ;; Customize minor modes mode-line
 (use-package delight
@@ -186,80 +167,10 @@
   :init
   (indent-guide-global-mode)
   :config
-  (setq indent-guide-char "|")
-  ;; (set-face-background 'indent-guide-face tomorrow/background)
-  ;; (set-face-foreground 'indent-guide-face tomorrow/current-line)
-  )
+  (setq indent-guide-char "|"))
 
 ;; Duplicate line
 (use-package duplicate-thing :ensure t)
-
-;; Theming mode-line
-
-;; (use-package spaceline :demand t)
-;; (use-package spaceline-config
-;;   :ensure nil
-;;   :after spaceline
-
-;;   :config
-
-;;   ;; Configure the mode-line
-;;   (setq-default
-;;    mode-line-format '("%e" (:eval (spaceline-ml-main)))
-;;    powerline-default-separator nil
-;;    powerline-height 22
-;;    spaceline-highlight-face-func 'spaceline-highlight-face-modified
-;;    spaceline-flycheck-bullet "• %s"
-;;    spaceline-separator-dir-left '(left . left)
-;;    spaceline-separator-dir-right '(right . right))
-;;   (spaceline-helm-mode)
-;;   (powerline-reset)
-
-;;   ;; Build the segments
-;;   (spaceline-define-segment me/helm-follow
-;;     (when (and (bound-and-true-p helm-alive-p)
-;;                spaceline--helm-current-source
-;;                (eq 1 (cdr (assq 'follow spaceline--helm-current-source))))
-;;       (propertize "" 'face 'success)))
-
-;;   ;; Build the mode-lines
-;;   (spaceline-install
-;;    `((major-mode :face highlight-face)
-;;      ((remote-host buffer-id line) :separator ":")
-;;      anzu)
-;;    `((selection-info)
-;;      ((flycheck-error flycheck-warning flycheck-info) :when active)
-;;      ((projectile-root version-control) :separator "  ")
-;;      (hud)
-;;      (global :face highlight-face)))
-;;   (spaceline-install
-;;    'helm
-;;    '((helm-buffer-id :face spaceline-read-only)
-;;      helm-number
-;;      (me/helm-follow :fallback "")
-;;      helm-prefix-argument)
-;;    '((helm-help :face spaceline-read-only)))
-
-;;   ;; Customize the mode-line
-;;   (set-face-attribute 'mode-line nil
-;;                       :box `(:line-width 1 :color ,tomorrow/selection)
-;;                       :foreground tomorrow/comment
-;;                       :height me/font-size-mode-line)
-;;   (set-face-attribute 'mode-line-inactive nil
-;;                       :box `(:line-width 1 :color ,tomorrow/selection)
-;;                       :foreground tomorrow/comment
-;;                       :height me/font-size-mode-line)
-;;   (set-face-attribute 'powerline-active2 nil :background tomorrow/background)
-;;   (set-face-attribute 'powerline-inactive2 nil :background tomorrow/background)
-;;   (set-face-attribute 'spaceline-flycheck-error nil :foreground tomorrow/red)
-;;   (set-face-attribute 'spaceline-flycheck-info nil :foreground tomorrow/blue)
-;;   (set-face-attribute 'spaceline-flycheck-warning nil :foreground tomorrow/orange)
-;;   (set-face-attribute 'spaceline-modified nil
-;;                       :background tomorrow/red :foreground tomorrow/yellow)
-;;   (set-face-attribute 'spaceline-read-only nil
-;;                       :background tomorrow/blue :foreground tomorrow/foreground)
-;;   (set-face-attribute 'spaceline-unmodified nil
-;;                       :background tomorrow/green :foreground tomorrow/current-line))
 
 ;; Utils
 
