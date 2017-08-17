@@ -64,4 +64,5 @@ cask 'tunnelbear'
 cask 'virtualbox'
 cask 'vlc'
 
+mas 'Boxy', id: 1053031090
 mas 'Xcode', id: 497799835 
