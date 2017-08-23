@@ -37,6 +37,7 @@ brew 'zsh'
 
 cask 'adobe-creative-cloud'
 cask 'alfred'
+cask 'android-file-transfer'
 cask 'android-studio'
 cask 'anybar'
 cask 'archiver'

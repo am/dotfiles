@@ -15,7 +15,7 @@
  line-spacing 3                                  ; Change line height
  mac-command-modifier 'meta                      ; Map cmd to meta
  mac-option-modifier 'super                      ; Map alt as super
- projectile-completion-system 'grizzl            ; Projectile completion system
+ projectile-completion-system 'ivy            ; Projectile completion system
  uniquify-buffer-name-style 'forward             ; Uniquify buffer names
  linum-format " %d "
  js-indent-level 2
@@ -121,17 +121,47 @@
    neo-vc-integration '(face)
    neo-theme 'nerd))
 
-;; Helm everywhere
-(use-package helm
-  :no-require t
-  :init (require 'prelude-helm-everywhere)
-  :delight helm-mode "⇥"
+;; Ivy
+(use-package counsel
+  :ensure t
+  :init
+  (use-package hydra :ensure t)
+  (use-package ivy-hydra :ensure t)
+  :bind
+  (("C-s" . swiper)
+   ("M-x" . counsel-M-x)
+   ("C-x C-f" . counsel-find-file)
+   ("C-c g" . counsel-git)
+   ("C-c j" . counsel-git-grep)
+   ("C-c k" . counsel-ag)
+   ("C-x l" . counsel-locate)
+   ("C-S-o" . counsel-rhythmbox)
+   ("C-." . counsel-find-symbol)
+   ("C-," . counsel--info-lookup-symbol)
+   ("C-c C-r" . ivy-resume))
   :config
-  (setq-default
-   helm-M-x-fuzzy-match t
-   helm-buffers-fuzzy-matching t
-   helm-recentf-fuzzy-match t)
-  (helm-mode t))
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-re-builders-alist
+        '((t . ivy--regex-plus
+             )))
+  (setq magit-completing-read-function 'ivy-completing-read))
+
+(use-package counsel-projectile
+  :ensure t
+  :bind*
+  (("C-c p p"   . counsel-projectile-switch-project)
+   ("s-p p"     . counsel-projectile-switch-project)
+   ("C-c p b"   . counsel-projectile-switch-to-buffer)
+   ("s-p b"     . counsel-projectile-switch-to-buffer)
+   ("C-c p f"   . counsel-projectile-find-file)
+   ("s-p f"     . counsel-projectile-find-file)
+   ("C-c p s s" . counsel-projectile-ag)
+   ("s-p s s"   . counsel-projectile-ag)
+   ("s-a"       . counsel-projectile-ag))
+  :config
+  (counsel-projectile-on))
 
 ;; Web-mode configuration
 (use-package web-mode
@@ -143,6 +173,12 @@
     (setq web-mode-code-indent-offset 2)
     (setq web-mode-markup-indent-offset 2)))
 
+;; rjsx
+(use-package rjsx-mode
+  :ensure t
+  :init
+  (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode)))
+
 ;; Gutter diff changes with live update
 (use-package git-gutter
   :ensure t
@@ -153,48 +189,6 @@
     (setq git-gutter:modified-sign " • ")
     (setq git-gutter:added-sign " + ")
     (setq git-gutter:deleted-sign " - ")))
-
-;; Customize minor modes mode-line
-(use-package delight
-  :config
-  (defadvice powerline-major-mode (around delight-powerline-major-mode activate)
-    (let ((inhibit-mode-name-delight nil)) ad-do-it))
-  (defadvice powerline-minor-modes (around delight-powerline-minor-modes activate)
-    (let ((inhibit-mode-name-delight nil)) ad-do-it)))
-
-;; Show indent guide
-(use-package indent-guide
-  :init
-  (indent-guide-global-mode)
-  :config
-  (setq indent-guide-char "|"))
-
-;; Duplicate line
-(use-package duplicate-thing :ensure t)
-
-;; Utils
-
-;; Show lines only on goto-line M-g g
-;; http://whattheemacsd.com//key-bindings.el-01.html
-
-(global-set-key [remap goto-line] 'goto-line-with-feedback)
-
-(defun goto-line-with-feedback ()
-  "Show line numbers temporarily, while prompting for the line number input"
-  (interactive)
-  (unwind-protect
-      (progn
-        (linum-mode 1)
-        (goto-line (read-number "Goto line: ")))
-    (linum-mode -1)))
-
-;; Toggle fullscreen
-(defun toggle-fullscreen ()
-  "Toggle full screen."
-  (interactive)
-  (set-frame-parameter
-   nil 'fullscreen
-   (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
 
 ;; Extract Jira ticket number on magit commit buffer
 (fset 'jira
