@@ -23,17 +23,17 @@
 (global-diff-hl-mode 0)                          ; Disable diff-hl since we use git-gutter
 
 
-(setq key-chord-two-keys-delay 0.08) ; default 0.1
-(setq key-chord-one-key-delay 0.15) ; default 0.2
+(setq key-chord-two-keys-delay .05) ; default 0.1
+(setq key-chord-one-key-delay  .1) ; default 0.2
 
-(key-chord-define-global "xx" 'helm-M-x)
+(key-chord-define-global " x" 'helm-M-x)
 (key-chord-define-global " 3" 'split-window-right)
 (key-chord-define-global " 2" 'split-window-below)
 (key-chord-define-global " 0" 'delete-window)
-(key-chord-define-global "dd" 'duplicate-thing)
 (key-chord-define-global " p" 'helm-projectile-switch-project)
 (key-chord-define-global " f" 'helm-projectile-find-file)
-(key-chord-define-global "gg" 'magit-status)
+(key-chord-define-global " s" 'helm-projectile-ag)
+(key-chord-define-global " g" 'magit-status)
 
 ;; scroll
 (setq mouse-wheel-scroll-amount '(1))

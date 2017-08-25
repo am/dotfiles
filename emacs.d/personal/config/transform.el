@@ -36,4 +36,9 @@
   ((">>" . mc/mark-next-like-this)
    ("<<" . mc/mark-previous-like-this)))
 
+(use-package duplicate-thing
+  :ensure t
+  :chords
+  ((" d" . duplicate-thing)))
+
 (provide 'transform)
