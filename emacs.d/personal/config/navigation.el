@@ -18,4 +18,15 @@
   (("]]" . neotree-show)
    ("[[" . neotree-hide)))
 
+(use-package swiper
+  :ensure t
+  :init
+  (global-set-key (kbd "C-s") nil)
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  :bind
+  (("C-s" . swiper)))
+
 (provide 'navigation)
