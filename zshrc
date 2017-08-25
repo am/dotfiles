@@ -65,9 +65,12 @@ source $HOME/.secret
 # load autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-# nvm
+# Load nvm
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
+
+# Add yarn global to path
+export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 
 # rbenv init
 eval "$(rbenv init -)"
