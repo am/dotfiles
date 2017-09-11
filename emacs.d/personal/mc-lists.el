@@ -3,10 +3,13 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        avy-goto-word-1
         crux-move-beginning-of-line
+        easy-kill
         haml-electric-backspace
         helm-M-x
         helm-projectile-ag
+        indent-for-tab-command
         mac-mwheel-scroll
         markdown-exdent-or-delete
         sp-backward-delete-char

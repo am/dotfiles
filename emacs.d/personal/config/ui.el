@@ -50,4 +50,8 @@
     (setq git-gutter:added-sign " + ")
     (setq git-gutter:deleted-sign " - ")))
 
+;; Fix fringe color
+(set-face-attribute 'fringe nil
+                    :background (face-background 'default))
+
 (provide 'ui)
