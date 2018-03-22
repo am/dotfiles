@@ -36,14 +36,10 @@ export UPDATE_ZSH_DAYS=1
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
-    bundler
     encode64
     git
     gitfast
     history-substring-search
-    rails
-    rhc
-    sublime
     tmux
     osx
 )
@@ -61,24 +57,38 @@ export PATH="/usr/local/sbin:$PATH"
 
 # secrets
 source $HOME/.secret
+fpath=(
+    ~/.fsecrets
+    "${fpath[@]}"
+)
+autoload -Uz aws-lernin-prod
+autoload -Uz aws-lernin-dev
 
 # load autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# rbenv init
+eval "$(rbenv init -)"
+
+# Android Studio
+export ANDROID_HOME="/usr/local/share/android-sdk"
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+
+# Fastlane
+export PATH="$HOME/.fastlane/bin:$PATH"
+
+# coreutils
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Load nvm
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
 # Add yarn global to path
-export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
+export PATH="$(yarn global bin):$PATH"
 
-# rbenv init
-eval "$(rbenv init -)"
-
-# Android Studio
-export ANDROID_HOME=${HOME}/Library/Android/sdk
-export PATH=${PATH}:${ANDROID_HOME}/tools
-export PATH=${PATH}:${ANDROID_HOME}/platform-tools
-
-# webos CLI
-export PATH=${PATH}:/opt/webOS_TV_SDK/CLI/bin
+# python pip deps
+export PATH="$HOME/Library/Python/2.7/bin:$PATH"
