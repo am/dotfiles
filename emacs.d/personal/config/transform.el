@@ -33,12 +33,14 @@
   :init
   (setq mc/list-file "~/.emacs.d/personal/mc-lists.el")
   :chords
-  ((" ." . mc/mark-next-like-this)
-   (" ," . mc/mark-previous-like-this)))
+  ((".." . mc/mark-next-like-this)
+   (",," . mc/mark-previous-like-this)))
 
 (use-package duplicate-thing
   :ensure t
   :chords
   (("DD" . duplicate-thing)))
+
+(use-package js-format)
 
 (provide 'transform)

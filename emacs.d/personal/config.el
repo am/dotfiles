@@ -7,9 +7,9 @@
 
 (require 'settings)
 (require 'use-package-init)
-(require 'ui)
 (require 'navigation)
 (require 'transform)
 (require 'modes)
+(require 'ui)
 
 ;;; config.el ends here

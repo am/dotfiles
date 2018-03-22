@@ -21,6 +21,13 @@
   ;; set font
   (when (member me/font-family (font-family-list))
     (set-face-attribute 'default nil :font me/font-family :height me/font-size-default))
+  ;; refine magit hunks
+  (set-face-attribute 'diff-refine-removed nil
+                      :background "#523F32"
+                      :foreground (get-theme-color 'orange))
+  (set-face-attribute 'diff-refine-added nil
+                      :background "#54583B"
+                      :foreground (get-theme-color 'green))
   ;; set mode-line
   (set-face-attribute 'mode-line nil
                       :box `(:line-width 10 :color , (get-theme-color 'current-line))
@@ -46,9 +53,24 @@
   (global-git-gutter-mode t)
   :config
   (progn
-    (setq git-gutter:modified-sign " • ")
-    (setq git-gutter:added-sign " + ")
-    (setq git-gutter:deleted-sign " - ")))
+    (setq git-gutter:modified-sign " • ")
+    (setq git-gutter:added-sign " + ")
+    (setq git-gutter:deleted-sign " - ")))
+
+;; setup whitespace
+(use-package whitespace
+  :init
+  (dolist (hook '(prog-mode-hook text-mode-hook))
+    (add-hook hook #'whitespace-mode))
+  (add-hook 'before-save-hook #'whitespace-cleanup)
+
+  (setq whitespace-line-column 100) ;; limit line length
+  (setq whitespace-style '(face spaces newline tabs empty trailing lines-tail space-mark newline-mark tab-mark))
+  :config
+  (set-face-attribute 'whitespace-space       nil :foreground (get-theme-color 'selection) :background (get-theme-color 'background))
+  (set-face-attribute 'whitespace-newline     nil :foreground (get-theme-color 'selection) :background (get-theme-color 'background))
+  (set-face-attribute 'whitespace-indentation nil :foreground (get-theme-color 'selection) :background (get-theme-color 'background))
+  )
 
 ;; Fix fringe color
 (set-face-attribute 'fringe nil

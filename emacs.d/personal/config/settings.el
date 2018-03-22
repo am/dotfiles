@@ -7,7 +7,7 @@
  fill-column 100                                 ; Set width for automatic line breaking
  indent-tabs-mode nil                            ; Stop using tabs to indent
  initial-scratch-message ""                      ; Empty the initial *scratch* buffer
- line-spacing 3                                  ; Change line height
+ line-spacing 4                                  ; Change line height
  mac-command-modifier 'meta                      ; Map cmd to meta
  mac-option-modifier 'super                      ; Map alt as super
  projectile-completion-system 'helm              ; Projectile completion system
@@ -38,5 +38,9 @@
 ;; scroll
 (setq mouse-wheel-scroll-amount '(1))
 (setq mouse-wheel-progressive-speed nil)
+
+(setq magit-section-refined 'all)
+;; https://colinxy.github.io/software-installation/2016/09/24/emacs25-easypg-issue.html
+(setq epa-pinentry-mode 'loopback)
 
 (provide 'settings)

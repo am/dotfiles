@@ -29,4 +29,8 @@
   :bind
   (("C-s" . swiper)))
 
+(use-package nlinum
+  :ensure t
+  :config (add-hook 'prog-mode-hook '(lambda () (nlinum-mode t))))
+
 (provide 'navigation)

@@ -4,17 +4,29 @@
 (setq mc/cmds-to-run-for-all
       '(
         avy-goto-word-1
+        browse-kill-ring
         crux-move-beginning-of-line
         easy-kill
+        emmet-expand-line
         haml-electric-backspace
         helm-M-x
         helm-projectile-ag
+        ido-dired
         indent-for-tab-command
+        kill-region
         mac-mwheel-scroll
         markdown-exdent-or-delete
+        nxml-electric-slash
+        sh-assignment
         sp-backward-delete-char
         sp-backward-kill-word
+        sp-delete-char
+        sp-kill-region
+        sp-remove-active-pair-overlay
+        sp-splice-sexp
+        transpose-words
         yaml-electric-backspace
+        yank-rectangle
         ))
 
 (setq mc/cmds-to-run-once
@@ -31,4 +43,5 @@
         mouse-set-region
         next-buffer
         previous-buffer
+        swiper
         ))
