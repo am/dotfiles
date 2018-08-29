@@ -55,7 +55,6 @@ This function should only modify configuration layer settings."
      syntax-checking
      (version-control :variables
                       version-control-diff-side 'left
-                      version-control-global-margin t
                       version-control-diff-tool 'diff-hl)
      javascript
      html
@@ -446,8 +445,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (setq require-final-newline t)
-  )
+  (setq require-final-newline t))
 
 
 (defun dotspacemacs/user-load ()
@@ -478,7 +476,11 @@ before packages are loaded."
                       :foreground "gray30")
   (set-face-attribute 'whitespace-newline nil
                       :background nil
-                      :foreground "gray30"))
+                      :foreground "gray30")
+  ;; avoid whitespace to mark longer lines
+  (set-face-attribute 'whitespace-line nil
+                      :background nil
+                      :foreground nil))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
