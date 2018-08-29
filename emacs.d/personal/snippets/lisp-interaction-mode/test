@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: test
-# key: test
-# --
-var b = 10;
