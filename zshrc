@@ -1,4 +1,4 @@
-# Path to your oh-my-zsh configuration.
+# path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 ZSH_CUSTOM=$HOME/.oh-my-zsh--custom
 
@@ -46,6 +46,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# iterm integration
+source ~/.iterm2_shell_integration.zsh
+
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -71,7 +74,7 @@ autoload -Uz aws-lernin-dev
 eval "$(rbenv init -)"
 
 # Android Studio
-export ANDROID_HOME="/usr/local/share/android-sdk"
+export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
@@ -92,3 +95,6 @@ export PATH="$(yarn global bin):$PATH"
 
 # python pip deps
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
+
+# java
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
