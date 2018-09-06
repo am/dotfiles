@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 #!/usr/bin/env bash
 
 #################
@@ -27,11 +34,11 @@ sudo systemsetup -setcomputersleep 10
 
 #########
 # ohmyzsh
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
-#################
-# emacs - prelude
-curl -L https://git.io/epre | sh
+###########
+# spacemacs
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.e
 
 ###############
 # Dotfiles init
@@ -39,4 +46,6 @@ brew tap thoughtbot/formulae
 brew install rcm
 env RCRC=/Users/am/.dotfiles/rcrc rcup
 
-echo "Done. Note that some of these changes require a logout/restart to take effect."
+echo "Done. Now the default shell will be changed to zsh."
+
+chsh -s /bin/zsh

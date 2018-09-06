@@ -2,12 +2,18 @@ cask_args appdir: '/Applications'
 
 tap 'PX4/homebrew-px4'
 tap 'caskroom/cask'
+tap 'caskroom/versions'
 tap 'osx-cross/avr'
 tap 'railwaycat/emacsmacport'
 tap 'thoughtbot/formulae'
 
+# first install java since other packages depend on this:
+# gradle, clojurescript
+cask 'java'
+cask 'java8'
+
 brew 'ack'
-brew 'asciinema'
+brew kasciinema'
 brew 'autojump'
 brew 'automake'
 brew 'avr-gcc'
@@ -94,8 +100,6 @@ cask 'google-chrome'
 cask 'hammerspoon'
 cask 'insomnia'
 cask 'iterm2'
-cask 'java'
-cask 'java8'
 cask 'karabiner-elements'
 cask 'ngrok'
 cask 'numi'
