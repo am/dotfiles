@@ -32,8 +32,11 @@ killall Dock
 # Sleep time
 sudo systemsetup -setcomputersleep 10
 
+## Mouse
 # normal mouse scroll direction
 defaults write -g com.apple.swipescrolldirection -bool NO
+# right click
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton
 
 #########
 # ohmyzsh
