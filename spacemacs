@@ -50,7 +50,7 @@ This function should only modify configuration layer settings."
      ivy
      javascript
      markdown
-     neotree
+     treemacs
      org
      ranger
      shell
@@ -71,7 +71,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(vue-mode)
+   dotspacemacs-additional-packages '(vue-mode jade-mode)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -468,6 +468,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                             (line-number-current-line :foreground "#ffcc66" :background nil)
                             ;; (diff-hl-change :box (:color nil :style nil :line-width 0) :background "#f2777a" )
                             ;; (diff-hl-add-highlighting :background "#99cc99" :box nil)
+                            (treemacs-git-modified-face :foreground "#ff00ff")
                             (spacemacs-insert-face :foreground "#2d2d2d" :background "#99cc99")
                             (spacemacs-normal-face :foreground "#2d2d2d" :background "#ffcc66")
                             (spacemacs-visual-face :foreground "#2d2d2d" :background "#cccccc")))))
@@ -486,6 +487,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (executable-find "python3")
   (add-hook 'prog-mode-hook 'rainbow-mode)
   (setq-default
    mmm-submode-decoration-level 0
