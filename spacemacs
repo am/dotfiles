@@ -50,11 +50,11 @@ This function should only modify configuration layer settings."
      ivy
      javascript
      markdown
-     treemacs
+     (treemacs :variables treemacs-no-png-images t)
      org
      ranger
      shell
-     spell-checking
+     ;; spell-checking
      syntax-checking
      themes-megapack
      theming
@@ -447,6 +447,10 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  ;; disable syntax errors since this is done by the linter
+  (setq js2-mode-show-parse-errors nil)
+  (setq js2-mode-show-strict-warnings nil)
+
   (setq require-final-newline t)
   ;; (eighties . ((background . "#2d2d2d"
   ;;              (alt-background . "#333333333333")

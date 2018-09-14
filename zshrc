@@ -76,8 +76,7 @@ eval "$(rbenv init -)"
 # Android Studio
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
-export PATH=${PATH}:${ANDROID_HOME}/tools
-export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+export PATH=$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH
 
 # Fastlane
 export PATH="$HOME/.fastlane/bin:$PATH"
