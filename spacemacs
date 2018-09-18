@@ -485,6 +485,16 @@ This function is called only while dumping Spacemacs configuration. You can
 dump."
   )
 
+(defun my/use-eslint-from-node-modules ()
+  (let ((root (locate-dominating-file
+               (or (buffer-file-name) default-directory)
+               (lambda (dir)
+                 (let ((eslint (expand-file-name "node_modules/eslint/bin/eslint.js" dir)))
+                   (and eslint (file-executable-p eslint)))))))
+    (when root
+      (let ((eslint (expand-file-name "node_modules/eslint/bin/eslint.js" root)))
+        (setq-local flycheck-javascript-eslint-executable eslint)))))
+
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
 This function is called at the very end of Spacemacs startup, after layer
@@ -492,6 +502,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (executable-find "python3")
+  (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
   (add-hook 'prog-mode-hook 'rainbow-mode)
   (setq-default
    mmm-submode-decoration-level 0
