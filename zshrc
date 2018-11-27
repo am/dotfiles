@@ -1,3 +1,5 @@
+echo $PATH
+
 # path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 ZSH_CUSTOM=$HOME/.oh-my-zsh--custom
@@ -83,6 +85,9 @@ export PATH="$HOME/.fastlane/bin:$PATH"
 
 # coreutils
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# expose gnu-sed
+PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Load nvm
@@ -90,7 +95,8 @@ export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
 # Add yarn global to path
-export PATH="$(yarn global bin):$PATH"
+# It does not work well with nvm
+# export PATH="$(yarn global bin):$PATH"
 
 # python pip deps
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
