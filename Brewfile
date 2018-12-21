@@ -71,7 +71,7 @@ brew 'watch'
 brew 'watchman'
 brew 'webp'
 brew 'wget'
-brew 'yarn'
+brew 'yarn', args: ['without-node']
 brew 'zeromq'
 brew 'zlib'
 brew 'zsh'
