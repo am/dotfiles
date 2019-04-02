@@ -50,23 +50,21 @@ This function should only modify configuration layer settings."
      ivy
      javascript
      markdown
+     multiple-cursors
      (treemacs :variables treemacs-no-png-images t)
      org
      ranger
      shell
-     ;; spell-checking
+     spell-checking
      syntax-checking
      themes-megapack
      theming
      (version-control :variables
                       version-control-diff-side 'left
                       version-control-diff-tool 'diff-hl)
-     writeroom
-     typescript
      rust
-     ;; lsp
-     ;; (vue :variables
-     ;;      vue-format-before-save nil)
+     prettier
+     react
      )
 
    ;; List of additional packages that will be installed without being
@@ -76,7 +74,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(jade-mode vue-mode)
+   dotspacemacs-additional-packages '(vue-mode)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -531,7 +529,7 @@ before packages are loaded."
   (setq-default
    mmm-submode-decoration-level 0
    require-final-newline 'visit-save
-   ;; line-spacing 5
+   line-spacing 5
    ranger-show-literal t)
   (setq dired-use-ls-dired nil)
   (setq javascript-indent-level 2)
@@ -561,6 +559,9 @@ before packages are loaded."
   (set-face-attribute 'whitespace-line nil
                       :background nil
                       :foreground nil)
+  (add-hook 'js2-mode-hook 'prettier-js-mode)
+  (add-hook 'web-mode-hook 'prettier-js-mode)
+  (add-hook 'scss-mode-hook 'prettier-js-mode)
   ;; Make evil-mode up/down operate in screen lines instead of logical lines
   (define-key evil-motion-state-map "j" 'evil-next-visual-line)
   (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
@@ -596,3 +597,23 @@ This function is called at the very end of Spacemacs initialization."
  '(spacemacs-visual-face ((t (:foreground "#2d2d2d" :background "#cccccc"))))
  '(treemacs-git-modified-face ((t (:foreground "#ff00ff")))))
 )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (zenburn-theme zen-and-art-theme xterm-color ws-butler winum white-sand-theme which-key wgrep web-mode web-beautify vue-mode edit-indirect ssass-mode vue-html-mode volatile-highlights vi-tilde-fringe uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme toml-mode toc-org tide typescript-mode tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spaceline powerline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smex smeargle slim-mode shell-pop seti-theme scss-mode sass-mode reverse-theme restart-emacs request rebecca-theme ranger rainbow-mode rainbow-identifiers rainbow-delimiters railscasts-theme racer purple-haze-theme pug-mode professional-theme popwin planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el paradox spinner orgit organic-green-theme org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-plus-contrib org-mime org-download org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme neotree naquadah-theme mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow magit-popup magit-gh-pulls madhat2r-theme macrostep lush-theme lorem-ipsum livid-mode skewer-mode simple-httpd linum-relative link-hint light-soap-theme json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc jbeans-theme jazz-theme jade-mode ivy-hydra ir-black-theme inkpot-theme indent-guide hydra hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation heroku-theme hemisu-theme helm-make helm helm-core hc-zenburn-theme haml-mode gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md gandalf-theme fuzzy flycheck-rust flycheck-pos-tip pos-tip flycheck flx-ido flx flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exotica-theme exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit transient git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu espresso-theme eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump f dracula-theme django-theme disaster diminish diff-hl define-word darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme csv-mode counsel-projectile projectile pkg-info epl counsel swiper ivy company-web web-completion-data company-tern s dash-functional tern company-statistics company-c-headers company column-enforce-mode color-theme-sanityinc-solarized color-identifiers-mode dash coffee-mode cmake-mode clues-theme clean-aindent-mode clang-format cherry-blossom-theme cargo markdown-mode rust-mode busybee-theme bubbleberry-theme birds-of-paradise-plus-theme bind-map bind-key badwolf-theme auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed async apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link avy ac-ispell auto-complete popup color-theme-sanityinc-tomorrow))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fringe ((t (:background "#2d2d2d" :foreground "#515151"))))
+ '(line-number ((t (:foreground "#515151" :background "#2d2d2d"))))
+ '(line-number-current-line ((t (:foreground "#ffcc66" :background nil))))
+ '(spacemacs-insert-face ((t (:foreground "#2d2d2d" :background "#99cc99"))))
+ '(spacemacs-normal-face ((t (:foreground "#2d2d2d" :background "#ffcc66"))))
+ '(spacemacs-visual-face ((t (:foreground "#2d2d2d" :background "#cccccc"))))
+ '(treemacs-git-modified-face ((t (:foreground "#ff00ff")))))
