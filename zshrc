@@ -101,3 +101,9 @@ export PATH="$HOME/Library/Python/2.7/bin:$PATH"
 
 # java
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
+export YVM_DIR=/usr/local/opt/yvm
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
+
+# ruby
+eval "$(rbenv init -)"
