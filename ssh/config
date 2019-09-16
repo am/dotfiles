@@ -3,7 +3,8 @@ Host *
   AddKeysToAgent yes
   IdentityFile ~/.ssh/id_rsa
 
-Host macmini
-  Hostname app-builder.local
-  User app-builder
-  IdentityFile "~/.ssh/backend.pem"
+Host *
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/am_rsa
+
