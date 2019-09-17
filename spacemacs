@@ -77,7 +77,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(color-theme-sanityinc-tomorrow vue-mode)
+   dotspacemacs-additional-packages '(doom-themes color-theme-sanityinc-tomorrow vue-mode)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -108,10 +108,10 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-enable-emacs-pdumper nil
 
-   ;; File path pointing to emacs 27.1 executable compiled with support
-   ;; for the portable dumper (this is currently the branch pdumper).
-   ;; (default "emacs-27.0.50")
-   dotspacemacs-emacs-pdumper-executable-file "emacs-27.0.50"
+   ;; Name of executable file pointing to emacs 27+. This executable must be
+   ;; in your PATH.
+   ;; (default "emacs")
+   dotspacemacs-emacs-pdumper-executable-file "emacs"
 
    ;; Name of the Spacemacs dump file. This is the file will be created by the
    ;; portable dumper in the cache directory under dumps sub-directory.
@@ -145,8 +145,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
-   ;; (default nil)
-   dotspacemacs-verify-spacelpa-archives nil
+   ;; (default t)
+   dotspacemacs-verify-spacelpa-archives t
 
    ;; If non-nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. Note that checking for
@@ -166,9 +166,6 @@ It should only modify the values of Spacemacs settings."
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
    dotspacemacs-editing-style 'vim
-
-   ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
-   dotspacemacs-verbose-loading nil
 
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
@@ -190,6 +187,11 @@ It should only modify the values of Spacemacs settings."
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
 
+   ;; Default major mode for a new empty buffer. Possible values are mode
+   ;; names such as `text-mode'; and `nil' to use Fundamental mode.
+   ;; (default `text-mode')
+   dotspacemacs-new-empty-buffer-major-mode 'text-mode
+
    ;; Default major mode of the scratch buffer (default `text-mode')
    dotspacemacs-scratch-mode 'text-mode
 
@@ -201,15 +203,17 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         doom-city-lights
+                         doom-one
                          sanityinc-tomorrow-eighties
                          sanityinc-tomorrow-day)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
-   ;; `all-the-icons', `custom', `vim-powerline' and `vanilla'. The first three
-   ;; are spaceline themes. `vanilla' is default Emacs mode-line. `custom' is a
-   ;; user defined themes, refer to the DOCUMENTATION.org for more info on how
-   ;; to create your own spaceline theme. Value can be a symbol or list with\
-   ;; additional properties.
+   ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
+   ;; first three are spaceline themes. `doom' is the doom-emacs mode-line.
+   ;; `vanilla' is default Emacs mode-line. `custom' is a user defined themes,
+   ;; refer to the DOCUMENTATION.org for more info on how to create your own
+   ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
    ;; dotspacemacs-mode-line-theme '(spacemacs :separator bar)
    dotspacemacs-mode-line-theme '(doom)
@@ -221,7 +225,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Operator Mono"
-                               :size 14
+                               :size 15
                                :weight normal
                                :width normal)
 
@@ -324,6 +328,11 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil) (Emacs 24.4+ only)
    dotspacemacs-maximized-at-startup nil
 
+   ;; If non-nil the frame is undecorated when Emacs starts up. Combine this
+   ;; variable with `dotspacemacs-maximized-at-startup' in OSX to obtain
+   ;; borderless fullscreen. (default nil)
+   dotspacemacs-undecorated-at-startup nil
+
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -351,10 +360,14 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-smooth-scrolling t
 
    ;; Control line numbers activation.
-   ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
-   ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
+   ;; If set to `t', `relative' or `visual' then line numbers are enabled in all
+   ;; `prog-mode' and `text-mode' derivatives. If set to `relative', line
+   ;; numbers are relative. If set to `visual', line numbers are also relative,
+   ;; but lines are only visual lines are counted. For example, folded lines
+   ;; will not be counted and wrapped lines are counted as multiple lines.
    ;; This variable can also be set to a property list for finer control:
    ;; '(:relative nil
+   ;;   :visual nil
    ;;   :disabled-for-modes dired-mode
    ;;                       doc-view-mode
    ;;                       markdown-mode
@@ -362,6 +375,7 @@ It should only modify the values of Spacemacs settings."
    ;;                       pdf-view-mode
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
+   ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
    dotspacemacs-line-numbers 'relative
 
@@ -374,7 +388,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-smartparens-strict-mode nil
 
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
-   ;; over any automatically added closing parenthesis, bracket, quote, etc…
+   ;; over any automatically added closing parenthesis, bracket, quote, etc...
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
    dotspacemacs-smart-closing-parenthesis nil
 
@@ -465,49 +479,17 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
+  (setq doom-modeline-height 40)
+  (setq doom-modeline-bar-width 6)
   (add-hook 'vue-mode-hook 'flycheck-mode)
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'rjsx-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook 'prettier-js-mode)
   (add-hook 'scss-mode-hook 'prettier-js-mode)
+  (add-hook 'vue-mode-hook 'prettier-js-mode)
 
   (setq require-final-newline t)
-  ;; (eighties . ((background . "#2d2d2d"
-  ;;              (alt-background . "#333333333333")
-  ;;              (current-line . "#393939")
-  ;;              (selection . "#515151")
-  ;;              (foreground . "#cccccc")
-  ;;              (comment . "#999999")
-  ;;              (red . "#f2777a")
-  ;;              (orange . "#f99157")
-  ;;              (yellow . "#ffcc66")
-  ;;              (green . "#99cc99")
-  ;;              (aqua . "#66cccc")
-  ;;              (blue . "#6699cc")
-  ;;              (purple . "#cc99cc")))
-  ;; use local eslint from node_modules before global
-  ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
-  (defun my/use-eslint-from-node-modules ()
-    (let* ((root (locate-dominating-file
-                  (or (buffer-file-name) default-directory)
-                  "node_modules"))
-           (eslint (and root
-                        (expand-file-name "node_modules/eslint/bin/eslint.js"
-                                          root))))
-      (when (and eslint (file-executable-p eslint))
-        (setq-local flycheck-javascript-eslint-executable eslint))))
-  (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
-  (setq-default
-   theming-modifications '((sanityinc-tomorrow-eighties
-                            (fringe :background "#2d2d2d" :foreground "#515151")
-                            (line-number :foreground "#515151" :background "#2d2d2d")
-                            (line-number-current-line :foreground "#ffcc66" :background nil)
-                            ;; (diff-hl-change :box (:color nil :style nil :line-width 0) :background "#f2777a" )
-                            ;; (diff-hl-add-highlighting :background "#99cc99" :box nil)
-                            (treemacs-git-modified-face :foreground "#ff00ff")
-                            (spacemacs-insert-face :foreground "#2d2d2d" :background "#99cc99")
-                            (spacemacs-normal-face :foreground "#2d2d2d" :background "#ffcc66")
-                            (spacemacs-visual-face :foreground "#2d2d2d" :background "#cccccc")))))
+  )
 
 
 (defun dotspacemacs/user-load ()
@@ -517,16 +499,6 @@ This function is called only while dumping Spacemacs configuration. You can
 dump."
   )
 
-(defun my/use-eslint-from-node-modules ()
-  (let ((root (locate-dominating-file
-               (or (buffer-file-name) default-directory)
-               (lambda (dir)
-                 (let ((eslint (expand-file-name "node_modules/eslint/bin/eslint.js" dir)))
-                   (and eslint (file-executable-p eslint)))))))
-    (when root
-      (let ((eslint (expand-file-name "node_modules/eslint/bin/eslint.js" root)))
-        (setq-local flycheck-javascript-eslint-executable eslint)))))
-
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
 This function is called at the very end of Spacemacs startup, after layer
@@ -534,43 +506,40 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (executable-find "python3")
-  (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
   (add-hook 'prog-mode-hook 'rainbow-mode)
   (setq-default
    mmm-submode-decoration-level 0
    require-final-newline 'visit-save
-   line-spacing 5
+   line-spacing 8
    ranger-show-literal t)
-  (add-to-list 'forge-alist '("source.datanerd.us" "source.datanerd.us/api"
-                              "source.datanerd.us" forge-github-repository))
   (setq dired-use-ls-dired nil)
   (setq javascript-indent-level 2)
   (setq js-indent-level 2)
   (setq js2-basic-offset 2)
   ;; toggles
-  (spacemacs/toggle-whitespace-globally-on)
+  ;; (spacemacs/toggle-whitespace-globally-on)
   (spacemacs/toggle-highlight-current-line-globally-off)
   (spacemacs/toggle-fill-column-indicator-on)
   ;; (set-face-attribute 'line-number nil :foreground "black" :background "white")
   ;; set whitespace colors
-  (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark )))
-  (setq whitespace-display-mappings
-        ;; all numbers are unicode codepoint in decimal. e.g. (insert-char 182 1)
-        '(
-          (space-mark 32 [183])
-          (newline-mark 10 [172 10])
-          (tab-mark 9 [8677 9] [92 9])
-          ))
-  (set-face-attribute 'whitespace-space nil
-                      :background nil
-                      :foreground "#515151")
-  (set-face-attribute 'whitespace-newline nil
-                      :background nil
-                      :foreground "#515151")
-  ;; avoid whitespace to mark longer lines
-  (set-face-attribute 'whitespace-line nil
-                      :background nil
-                      :foreground nil)
+  ;; (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark )))
+  ;; (setq whitespace-display-mappings
+  ;;       ;; all numbers are unicode codepoint in decimal. e.g. (insert-char 182 1)
+  ;;       '(
+  ;;         (space-mark 32 [183])
+  ;;         (newline-mark 10 [172 10])
+  ;;         (tab-mark 9 [8677 9] [92 9])
+  ;;         ))
+  ;; (set-face-attribute 'whitespace-space nil
+  ;;                     :background nil
+  ;;                     :foreground "#515151")
+  ;; (set-face-attribute 'whitespace-newline nil
+  ;;                     :background nil
+  ;;                     :foreground "#515151")
+  ;; ;; avoid whitespace to mark longer lines
+  ;; (set-face-attribute 'whitespace-line nil
+  ;;                     :background nil
+  ;;                     :foreground nil)
   ;; Make evil-mode up/down operate in screen lines instead of logical lines
   (define-key evil-motion-state-map "j" 'evil-next-visual-line)
   (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
@@ -598,11 +567,4 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(fringe ((t (:background "#2d2d2d" :foreground "#515151"))))
- '(line-number ((t (:foreground "#515151" :background "#2d2d2d"))))
- '(line-number-current-line ((t (:foreground "#ffcc66" :background nil))))
- '(spacemacs-insert-face ((t (:foreground "#2d2d2d" :background "#99cc99"))))
- '(spacemacs-normal-face ((t (:foreground "#2d2d2d" :background "#ffcc66"))))
- '(spacemacs-visual-face ((t (:foreground "#2d2d2d" :background "#cccccc"))))
- '(treemacs-git-modified-face ((t (:foreground "#ff00ff")))))
-)
+))
