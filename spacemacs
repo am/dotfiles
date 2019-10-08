@@ -42,6 +42,7 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      auto-completion
      c-c++
+     chrome
      colors
      csv
      emacs-lisp
@@ -49,26 +50,22 @@ This function should only modify configuration layer settings."
      github
      html
      ivy
-     javascript
+     (javascript :variables node-add-modules-path t)
      markdown
      (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
-     (treemacs :variables treemacs-no-png-images t)
      org
+     prettier
      ranger
+     react
+     rust
      shell
      spell-checking
      syntax-checking
-     ;; themes-megapack
      theming
-     version-control
-     ;; (version-control :variables
-     ;;                  version-control-diff-side 'left
-     ;;                  version-control-diff-tool 'diff-hl)
-     rust
-     prettier
-     react
+     (treemacs :variables treemacs-no-png-images t)
      typescript
-     )
+     version-control
+    )
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -77,7 +74,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(doom-themes color-theme-sanityinc-tomorrow vue-mode)
+   dotspacemacs-additional-packages '(doom-themes vue-mode)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -202,11 +199,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(
-                         doom-city-lights
-                         doom-one
-                         sanityinc-tomorrow-eighties
-                         sanityinc-tomorrow-day)
+   dotspacemacs-themes '(doom-city-lights)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -470,25 +463,32 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  ;; theme modifications
+  (setq theming-modifications
+        '((doom-city-lights
+           (ivy-current-match :foreground "#EBBF83")
+           )))
+
   ;; disable syntax errors since this is done by the linter
   (setq js2-mode-show-parse-errors nil)
   (setq js2-mode-show-strict-warnings nil)
   (setq javascript-indent-level 2)
   (setq js-indent-level 2)
   (setq js2-basic-offset 2)
+  (setq require-final-newline t)
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
   (setq doom-modeline-height 40)
   (setq doom-modeline-bar-width 6)
-  (add-hook 'vue-mode-hook 'flycheck-mode)
+
+  ;; hook prettier
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'rjsx-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook 'prettier-js-mode)
   (add-hook 'scss-mode-hook 'prettier-js-mode)
   (add-hook 'vue-mode-hook 'prettier-js-mode)
-
-  (setq require-final-newline t)
+  (add-hook 'typescript-mode-hook 'prettier-js-mode)
   )
 
 
@@ -517,29 +517,11 @@ before packages are loaded."
   (setq js-indent-level 2)
   (setq js2-basic-offset 2)
   ;; toggles
-  ;; (spacemacs/toggle-whitespace-globally-on)
-  (spacemacs/toggle-highlight-current-line-globally-off)
+  (spacemacs/toggle-highlight-current-line-globally-on)
   (spacemacs/toggle-fill-column-indicator-on)
-  ;; (set-face-attribute 'line-number nil :foreground "black" :background "white")
-  ;; set whitespace colors
-  ;; (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark )))
-  ;; (setq whitespace-display-mappings
-  ;;       ;; all numbers are unicode codepoint in decimal. e.g. (insert-char 182 1)
-  ;;       '(
-  ;;         (space-mark 32 [183])
-  ;;         (newline-mark 10 [172 10])
-  ;;         (tab-mark 9 [8677 9] [92 9])
-  ;;         ))
-  ;; (set-face-attribute 'whitespace-space nil
-  ;;                     :background nil
-  ;;                     :foreground "#515151")
-  ;; (set-face-attribute 'whitespace-newline nil
-  ;;                     :background nil
-  ;;                     :foreground "#515151")
-  ;; ;; avoid whitespace to mark longer lines
-  ;; (set-face-attribute 'whitespace-line nil
-  ;;                     :background nil
-  ;;                     :foreground nil)
+  (setq doom-themes-treemacs-theme "doom-colors")
+  (doom-themes-neotree-config)
+
   ;; Make evil-mode up/down operate in screen lines instead of logical lines
   (define-key evil-motion-state-map "j" 'evil-next-visual-line)
   (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
@@ -561,7 +543,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (seeing-is-believing rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe rbenv rake minitest helm-gtags helm helm-core ggtags enh-ruby-mode counsel-gtags chruby bundler inf-ruby yaml-mode doom-modeline magit transient js2-mode flycheck yasnippet-snippets xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify vue-mode volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toml-mode toc-org tide tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shrink-path shell-pop scss-mode sass-mode rjsx-mode restart-emacs request ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer pug-mode prettier-js popwin persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless multi-term move-text markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-rtags ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate google-c-style golden-ratio gnuplot gitignore-templates gitignore-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy forge font-lock+ flyspell-correct-ivy flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav eldoc-eval editorconfig dumb-jump dotenv-mode disaster diminish diff-hl define-word csv-mode counsel-projectile counsel-css company-web company-tern company-statistics company-rtags company-c-headers column-enforce-mode color-theme-sanityinc-tomorrow color-identifiers-mode clean-aindent-mode clang-format centered-cursor-mode cargo browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ac-ispell))))
+    (solaire-mode gmail-message-mode ham-mode html-to-markdown flymd edit-server import-js grizzl seeing-is-believing rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe rbenv rake minitest helm-gtags helm helm-core ggtags enh-ruby-mode counsel-gtags chruby bundler inf-ruby yaml-mode doom-modeline magit transient js2-mode flycheck yasnippet-snippets xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify vue-mode volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toml-mode toc-org tide tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shrink-path shell-pop scss-mode sass-mode rjsx-mode restart-emacs request ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer pug-mode prettier-js popwin persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless multi-term move-text markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-rtags ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate google-c-style golden-ratio gnuplot gitignore-templates gitignore-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy forge font-lock+ flyspell-correct-ivy flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav eldoc-eval editorconfig dumb-jump dotenv-mode disaster diminish diff-hl define-word csv-mode counsel-projectile counsel-css company-web company-tern company-statistics company-rtags company-c-headers column-enforce-mode color-theme-sanityinc-tomorrow color-identifiers-mode clean-aindent-mode clang-format centered-cursor-mode cargo browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
