@@ -17,3 +17,4 @@ tags
 .bundle
 atlassian-ide-plugin.xml
 .tern-port
+.log
