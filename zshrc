@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # test speed
 # zmodload zsh/zprof
 
@@ -79,16 +81,16 @@ plugins=(
     git
     gitfast
     history-substring-search
-    tmux
-    osx
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+eval $(/opt/homebrew/bin/brew shellenv)
+
 # fnm node version manager: https://github.com/Schniz/fnm
-eval "$(fnm env)"
+# eval "$(fnm env)"
 
 # iterm integration
 source ~/.iterm2_shell_integration.zsh
@@ -113,17 +115,8 @@ fpath=(
 # load autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-# rbenv init
-eval "$(rbenv init -)"
-
 # python pip deps
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
-
-# java
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-
-# ruby
-eval "$(rbenv init -)"
 
 # go
 export PATH="$HOME/go/bin:$PATH"
@@ -135,3 +128,6 @@ export PATH="/usr/local/opt/avr-gcc@8/bin:$PATH"
 export PATH="/usr/local/opt/go@1.13/bin:$PATH"
 
 # zprof
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
