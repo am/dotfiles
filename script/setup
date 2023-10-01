@@ -39,8 +39,8 @@ defaults write -g com.apple.swipescrolldirection -bool NO
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton
 
 #########
-# ohmyzsh
-git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+# fish
+brew install fish
 
 ###########
 # spacemacs
