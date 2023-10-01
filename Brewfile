@@ -72,7 +72,7 @@ brew 'zlib'
 brew 'zsh'
 
 cask '1password'
-cask 'alfred5'
+cask 'alfred'
 cask 'android-studio'
 cask 'archiver'
 cask 'arq'
