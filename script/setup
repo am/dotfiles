@@ -56,5 +56,4 @@ echo "Install Homebrew packages"
 brew bundle
 
 echo "Done. Now the default shell will be changed to zsh."
-
-chsh -s /bin/zsh
+chsh -s /opt/homebrew/bin/fish
