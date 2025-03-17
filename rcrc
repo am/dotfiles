@@ -1,2 +1,3 @@
 EXCLUDES="bin script README.md"
 UNDOTTED="Brewfile"
+SYMLINK_DIRS="config"
