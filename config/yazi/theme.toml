@@ -1,0 +1,7 @@
+[flavor]
+dark = "timu-macos-dark"
+light = "timu-macos-light"
+
+[status]
+sep_left = { open = "", close = "" }
+sep_right = { open = "", close = "" }

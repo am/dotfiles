@@ -7,5 +7,16 @@ end
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
-# Added by Radicle.
-export PATH="$PATH:/Users/amiranda/.radicle/bin"
+# yazi
+function y
+	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+	yazi $argv --cwd-file="$tmp"
+	if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+		builtin cd -- "$cwd"
+	end
+	rm -f -- "$tmp"
+end
+
+# editor
+set -Ux EDITOR cursor
+set -Ux VISUAL $EDITOR
