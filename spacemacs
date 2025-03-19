@@ -90,8 +90,7 @@ This function should only modify configuration layer settings."
                                       graphql-mode
                                       doom-themes
                                       vue-mode
-                                      (forge :toggle t)
-                                      nvm)
+                                      )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -624,12 +623,8 @@ before packages are loaded."
 
  '(evil-want-Y-yank-to-eol nil)
   ;; set node version using nvm
-  (nvm-use-for)
+  ;; (nvm-use-for)
   ;; add GHE to forge
-  (with-eval-after-load 'forge
-    (add-to-list 'forge-alist '("source.datanerd.us" "source.datanerd.us/api/v3"
-                                "source.datanerd.us" forge-github-repository))
-    )
   (executable-find "python3")
   (add-hook 'prog-mode-hook 'rainbow-mode)
   (setq-default mmm-submode-decoration-level
@@ -671,3 +666,25 @@ before packages are loaded."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(auto-complete ace-link add-node-modules-path aggressive-indent all-the-icons auto-compile auto-highlight-symbol auto-yasnippet browse-at-remote cargo ccls centered-cursor-mode clang-format color-identifiers-mode company-shell company counsel csv-mode devdocs disaster doom-modeline nerd-icons doom-themes dumb-jump edit-server editorconfig elisp-def emmet-mode list-utils evil-anzu evil-cleverparens paredit evil-collection evil-escape evil-goggles evil-indent-plus smartparens evil-matchit evil-mc evil-nerd-commenter evil-numbers evil-org evil-surround evil-tutor evil-visual-mark-mode expand-region fish-mode flx-ido flx flycheck-elsa flycheck-package package-lint pos-tip fuzzy gendoxy git-gutter git-link git-modes git-timemachine gnuplot go-fill-struct go-gen-test go-guru go-rename go-tag go-mode golden-ratio google-translate popup graphql-mode haml-mode hide-comnt hl-todo impatient-mode info+ inspector ivy-avy ivy-hydra rtags multiple-cursors json-mode json-navigator json-reformat link-hint lorem-ipsum lsp-ivy lsp-origami lsp-treemacs lsp-ui lsp-mode macrostep minitest multi-line nameless org-contrib org-download org-jira request org-mime alert log4e org-present org-projectile org-project-capture org-category-capture org-rich-yank org-superstar orgit forge yaml markdown-mode ghub closql emacsql treepy org overseer paradox quickrun f rbenv rjsx-mode js2-mode robe inf-ruby rspec-mode rubocopfmt rust-mode rvm shfmt reformatter simple-httpd spaceline powerline spacemacs-purpose-popwin string-edit-at-point string-inflection swiper ivy symbol-overlay tide flycheck treemacs-evil treemacs-icons-dired treemacs-magit magit magit-section git-commit with-editor transient seq compat treemacs-persp persp-mode treemacs-projectile treemacs projectile ht pfuture ace-window avy posframe dash typescript-mode volatile-highlights vue-mode edit-indirect mmm-mode web-mode wgrep writeroom-mode visual-fill-column yaml-mode yasnippet-snippets yasnippet s async diminish hydra evil font-lock+ pcre2el use-package bind-key which-key ws-butler winum web-beautify vue-html-mode vim-powerline vi-tilde-fringe uuidgen undo-tree toml-mode toc-org term-cursor tagedit symon ssass-mode spinner spacemacs-whitespace-cleanup spaceline-all-the-icons space-doc smex smeargle slim-mode shut-up shrink-path seeing-is-believing scss-mode sass-mode ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop ron-mode restart-emacs ranger rake rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin password-generator packed ox-jira origami org-pomodoro org-cliplink open-junk-file nvm npm-mode nodejs-repl markdown-toc lv livid-mode json-snatcher js2-refactor js-doc ivy-yasnippet ivy-xref ivy-rtags ivy-purpose insert-shebang indent-guide hybrid-mode hungry-delete htmlize holy-mode highlight-parentheses highlight-numbers highlight-indentation hierarchy help-fns+ helm-make goto-chg google-c-style godoctor go-impl go-eldoc gntp gmail-message-mode gitignore-templates git-messenger git-gutter-fringe gh-md flyspell-correct-ivy flymd flycheck-ycmd flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-bashate fancy-battery eyebrowse evil-visualstar evil-unimpaired evil-textobj-line evil-lisp-state evil-lion evil-iedit-state evil-exchange evil-evilified-state evil-easymotion evil-args eval-sexp-fu emr elisp-slime-nav drag-stuff dotenv-mode dired-quick-sort define-word cpp-auto-include counsel-projectile counsel-css company-ycmd company-web company-rtags company-go company-c-headers column-enforce-mode clean-aindent-mode chruby cfrs bundler auto-dictionary anzu annalist ac-ispell))
+ '(warning-suppress-types '((use-package))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fill-column-indicator ((t (:foreground "#10151C"))))
+ '(ivy-current-match ((t (:foreground "#EBBF83"))))
+ '(mode-line ((t (:background "#10151C")))))
+)
