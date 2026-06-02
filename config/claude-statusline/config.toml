@@ -1,0 +1,107 @@
+# claude-statusline configuration
+# Docs: https://github.com/felipeelias/claude-statusline
+
+# Preset defines the complete visual style (layout, colors, separators).
+# Built-in presets:
+#   "default"          - flat with | pipes (no Nerd Font needed)
+#   "minimal"          - clean spacing, no separators (no Nerd Font needed)
+#   "pastel-powerline" - pastel powerline arrows (Nerd Font)
+#   "tokyo-night"      - dark blues rounded powerline (Nerd Font)
+#   "gruvbox-rainbow"  - earthy rainbow powerline (Nerd Font)
+#   "catppuccin"       - Catppuccin Mocha powerline (Nerd Font)
+# Run 'claude-statusline themes' to preview all presets.
+preset = "default"
+
+# Format string controls the layout. Modules are referenced with $name.
+# Styled text groups use [text](style) syntax.
+# When using a preset, you typically don't need to change the format.
+format = "$directory | $git_branch | $model | $cost | $context"
+
+# Module configuration. Each module supports format, style, and disabled.
+# Styles: "bold", "dim", "italic", "fg:#hex", "bg:#hex", "208"
+
+# [model]
+# format = "{{.DisplayName}}"
+# style = "bold"
+# Template fields: DisplayName, ID, Short (e.g. "Sonnet 4.6")
+
+# [directory]
+# format = "{{.Dir}}"
+# style = "cyan"
+# truncation_length = 3
+# hyperlink = false
+# hyperlink_url_template = "file://{{.AbsPathEncoded}}"  # or "vscode://file{{.AbsPath}}"
+
+# [cost]
+# format = '${{printf "%.2f" .TotalCostUSD}}'
+# style = "green"
+# thresholds = [
+#   { above = 1.0, style = "yellow" },
+#   { above = 5.0, style = "red" },
+# ]
+
+# [context]
+# format = '{{.Bar}} {{printf "%.0f" .UsedPct}}%'
+# style = "green"
+# bar_width = 5
+# bar_style = "classic"  # "classic", "blocks", "dots", "line", "squares"
+# bar_fill = "█"         # overrides bar_style fill character
+# bar_empty = "░"        # overrides bar_style empty character
+# thresholds = [
+#   { above = 50, style = "yellow" },
+#   { above = 90, style = "red" },
+# ]
+
+# [git_branch]
+# mode = "detailed"  # "detailed" (default) or "simple" (fast, branch only)
+# style = "cyan"
+# hyperlink = false
+# hyperlink_base_url = ""  # auto-detected from git remote; set to override
+# Template fields: Branch, InWorktree, IsDirty, IsClean,
+#   Staged, Modified, Untracked, Ahead, Behind, Conflicts
+
+# Disabled by default. Set disabled = false and add the module to format string to enable.
+
+# [version]
+# disabled = false
+# format = "v{{.Version}}"
+# style = "dim"
+
+# [session_timer]
+# disabled = false
+# format = "{{if .Hours}}{{.Hours}}h{{end}}{{printf \"%02d\" .Minutes}}m{{printf \"%02d\" .Seconds}}s"
+# style = "dim"
+
+# [lines_changed]
+# disabled = false
+# format = "+{{.Added}} -{{.Removed}}"
+# added_style = "green"
+# removed_style = "red"
+
+# [agent_name]
+# disabled = false
+# format = "{{.Name}}"
+# style = "bold magenta"
+# Template fields: Name (e.g. "security-reviewer")
+
+# Requires Claude Code 2.1.80+ which provides rate_limits in the status line payload.
+# Add $usage to your format string to display it.
+# [usage]
+# disabled = false
+# format = '{{.BlockBar}} {{printf "%.0f" .BlockPct}}% W:{{printf "%.0f" .WeeklyPct}}%'
+# style = "green"
+# bar_width = 5
+# bar_style = "classic"  # "classic", "blocks", "dots", "line", "squares"
+# bar_fill = "█"         # overrides bar_style fill character
+# bar_empty = "░"        # overrides bar_style empty character
+# thresholds = [
+#   { above = 75, style = "yellow" },
+#   { above = 90, style = "red" },
+# ]
+# Template fields: BlockPct, WeeklyPct, BlockBar, WeeklyBar, BlockResets, WeeklyResets
+
+# [vim_mode]
+# disabled = false
+# format = "{{.Mode}}"
+# style = "bold yellow"
+# Template fields: Mode (e.g. "NORMAL", "INSERT")
