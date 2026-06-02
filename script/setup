@@ -55,5 +55,5 @@ env RCRC=/Users/am/.dotfiles/rcrc rcup
 echo "Install Homebrew packages"
 brew bundle
 
-echo "Done. Now the default shell will be changed to zsh."
-chsh -s /opt/homebrew/bin/fish
+echo "Done. Now the default shell will be changed to fish."
+# chsh -s /opt/homebrew/bin/fish

@@ -1,4 +1,9 @@
-font-family = "Operator Mono SS"
-font-size = 18
-theme=0x96f
-macos-titlebar-style=tabs
+font-family="Operator Mono SSm Book"
+font-family-bold="Operator Mono SSm Bold"
+font-family-italic="Operator Mono SSm Book Italic"
+font-family-bold-italic="Operator Mono SSm Bold Italic"
+font-size=17
+font-thicken=false
+
+theme=ayu
+keybind = shift+enter=text:\x1b\r

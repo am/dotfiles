@@ -3,3 +3,26 @@ Host *
   AddKeysToAgent yes
   IdentityFile ~/.ssh/id_ed25519
 
+
+Host citynomad-server
+  HostName 100.113.121.116
+  User citynomad
+  Port 8288
+  IdentityFile ~/.ssh/id_ed25519
+
+Host nas-docker
+  HostName 100.66.228.16
+  User docker
+  IdentityFile ~/.ssh/synology_ed25519
+  AddKeysToAgent yes
+  UseKeychain yes
+  SetEnv TERM=xterm-256color
+
+Host citynomads-tools
+  HostName 145.79.26.156
+  User u972830373
+  Port 65002
+  IdentityFile ~/.ssh/citynomads-tools
+  AddKeysToAgent yes
+  UseKeychain yes
+

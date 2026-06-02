@@ -9,14 +9,23 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 # yazi
 function y
-	set tmp (mktemp -t "yazi-cwd.XXXXXX")
-	yazi $argv --cwd-file="$tmp"
-	if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-		builtin cd -- "$cwd"
-	end
-	rm -f -- "$tmp"
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    yazi $argv --cwd-file="$tmp"
+    if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        builtin cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
 end
 
 # editor
 set -Ux EDITOR cursor
 set -Ux VISUAL $EDITOR
+
+# cursor agent
+fish_add_path $HOME/.local/bin
+
+# homebrew
+fish_add_path /opt/homebrew/sbin
+
+# direnv
+direnv hook fish | source

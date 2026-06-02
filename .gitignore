@@ -1,3 +1,34 @@
 .DS_Store
-config/fish/fish_variables
 
+# Machine-local / generated app state
+config/fish/fish_variables
+config/cagent/.cagent_first_run
+
+# Google Cloud (credentials, logs, caches, DBs)
+config/gcloud/
+
+# GitHub CLI auth state (hosts.yml can hold tokens on some setups)
+config/gh/hosts.yml
+
+# 1Password CLI session
+config/op/
+
+# Soulseek — contains login/password
+config/nicotine/
+
+# Raycast: bundled extensions + node_modules (reinstall from Store)
+config/raycast/extensions/
+
+# Cursor extension binaries (you already have this)
+cursor/extensions/
+
+# Editor / app backups
+*.bak
+*~
+config/yazi/*-[0-9]*
+
+# VPN profile may embed secrets (binary)
+config/eddie/
+
+# Homebank
+config/homebank/
