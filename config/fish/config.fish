@@ -1,11 +1,19 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
-    set --global --export LANG en_US.UTF-8
+	# Commands to run in interactive sessions can go here
+	set --global --export LANG en_US.UTF-8
 end
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
+fish_add_path $BUN_INSTALL/bin
+
+# go
+fish_add_path $HOME/go/bin
+fish_add_path $HOME/.local/bin
+
+# gastown
+fish_add_path $HOME/.claude/local/node_modules/.bin
+
 
 # yazi
 function y
@@ -29,3 +37,17 @@ fish_add_path /opt/homebrew/sbin
 
 # direnv
 direnv hook fish | source
+
+# Claude Code keepalive workaround (anthropics/claude-code#60133)
+# Bun does not set SO_KEEPALIVE on TCP sockets; long idle stretches during
+# tool execution drop the HTTP/2 connection silently.
+set -gx CLAUDE_CODE_REMOTE_SEND_KEEPALIVES true
+set -gx BUN_CONFIG_HTTP_IDLE_TIMEOUT 300
+set -gx BUN_CONFIG_HTTP_RETRY_COUNT 3
+set -gx NODE_OPTIONS "--dns-result-order=ipv4first"
+
+# zoxide
+zoxide init fish | source
+
+# Set up fzf key bindings
+fzf --fish | source
