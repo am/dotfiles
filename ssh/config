@@ -3,6 +3,20 @@ Host *
   AddKeysToAgent yes
   IdentityFile ~/.ssh/id_ed25519
 
+Host *
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_rsa
+
+Host *
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/am_rsa
+
+Host *
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/dokku_rsa
 
 Host citynomad-server
   HostName 100.113.121.116
@@ -25,4 +39,3 @@ Host citynomads-tools
   IdentityFile ~/.ssh/citynomads-tools
   AddKeysToAgent yes
   UseKeychain yes
-
