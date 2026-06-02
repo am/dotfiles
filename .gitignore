@@ -2,6 +2,8 @@
 
 # Machine-local / generated app state
 config/fish/fish_variables
+config/fish/secrets.local.fish
+config/fish/completions/copilot.fish
 config/cagent/.cagent_first_run
 
 # Google Cloud (credentials, logs, caches, DBs)
